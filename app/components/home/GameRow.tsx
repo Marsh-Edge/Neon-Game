@@ -32,7 +32,7 @@ export function GameRow({ title, games, seeAllHref = "#" }: GameRowProps) {
       <div
         ref={ref}
         className={cn(
-          "flex gap-4 overflow-x-auto scrollbar-hide py-4 -mx-4 px-4",
+          "flex gap-4 overflow-x-auto scrollbar-hide py-6 -mx-4 px-4",
           isDragging ? "cursor-grabbing select-none" : "cursor-grab"
         )}
       >
