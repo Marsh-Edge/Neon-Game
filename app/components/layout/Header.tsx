@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Search, ShoppingCart, User, Menu, X, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
   { label: "Games", href: "#games" },
@@ -17,7 +18,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 frosted border-b border-white/[0.06]">
+    <header className="sticky top-0 z-50 frosted border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
@@ -25,7 +26,7 @@ export function Header() {
             <div className="relative flex size-9 items-center justify-center rounded-lg bg-neon-cyan/10 border border-neon-cyan/20 transition-all duration-300 group-hover:bg-neon-cyan/15 group-hover:border-neon-cyan/30 group-hover:shadow-[0_0_15px_rgba(0,229,255,0.2)]">
               <Gamepad2 className="size-5 text-neon-cyan" />
             </div>
-            <span className="font-[family-name:var(--font-display)] text-lg font-bold tracking-tight text-white">
+            <span className="font-[family-name:var(--font-display)] text-lg font-bold tracking-tight text-foreground">
               NEON<span className="text-neon-cyan">GAME</span>
             </span>
           </Link>
@@ -36,7 +37,7 @@ export function Header() {
               <a
                 key={link.label}
                 href={link.href}
-                className="nav-link px-3 py-2 text-sm font-medium text-slate-400 transition-colors duration-200 hover:text-white rounded-lg"
+                className="nav-link px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground rounded-lg"
               >
                 {link.label}
               </a>
@@ -46,28 +47,29 @@ export function Header() {
           {/* Search Bar */}
           <div className="hidden sm:flex flex-1 max-w-md mx-4">
             <div className="relative w-full group">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-500 group-focus-within:text-neon-cyan transition-colors duration-200" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground group-focus-within:text-neon-cyan transition-colors duration-200" />
               <Input
                 type="search"
                 placeholder="Search games..."
-                className="pl-9 frosted-input rounded-xl text-sm text-white placeholder:text-slate-500 h-9"
+                className="pl-9 frosted-input rounded-xl text-sm text-foreground placeholder:text-muted-foreground h-9"
               />
             </div>
           </div>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-1">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"
-              className="size-9 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl"
+              className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl"
             >
               <User className="size-[18px]" />
             </Button>
             <Button
               variant="ghost"
               size="icon"
-              className="size-9 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl relative"
+              className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
             >
               <ShoppingCart className="size-[18px]" />
               <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white shadow-[0_0_8px_rgba(255,46,147,0.4)]">
@@ -77,49 +79,52 @@ export function Header() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden size-9 text-slate-400 hover:text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-          </Button>
+          <div className="flex items-center gap-1 md:hidden">
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-9 text-muted-foreground hover:text-foreground"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden frosted border border-white/[0.06] rounded-xl -mx-2 mb-3 py-4 space-y-1">
+          <div className="md:hidden frosted border border-border rounded-xl -mx-2 mb-3 py-4 space-y-1">
             <div className="sm:hidden relative mb-3">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
               <Input
                 type="search"
                 placeholder="Search games..."
-                className="pl-9 frosted-input rounded-xl text-sm text-white placeholder:text-slate-500 h-9"
+                className="pl-9 frosted-input rounded-xl text-sm text-foreground placeholder:text-muted-foreground h-9"
               />
             </div>
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="block px-3 py-2.5 text-sm font-medium text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors duration-200"
+                className="block px-3 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-muted transition-colors duration-200"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
               </a>
             ))}
-            <div className="flex items-center gap-1 px-2 pt-3 mt-2 border-t border-white/[0.06]">
+            <div className="flex items-center gap-1 px-2 pt-3 mt-2 border-t border-border">
               <Button
                 variant="ghost"
                 size="icon"
-                className="size-9 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl"
+                className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl"
               >
                 <User className="size-[18px]" />
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
-                className="size-9 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl relative"
+                className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
               >
                 <ShoppingCart className="size-[18px]" />
                 <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white">

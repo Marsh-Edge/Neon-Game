@@ -85,7 +85,7 @@ export function HeroCarousel() {
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col justify-center px-8 sm:px-12 lg:px-20">
                   <div className="max-w-xl">
-                    <span className="inline-block px-3 py-1 mb-4 text-[11px] font-semibold tracking-wider uppercase rounded-full glass glass-border text-white/90">
+                    <span className="inline-block px-3 py-1 mb-4 text-[11px] font-semibold tracking-wider uppercase rounded-full glass glass-border text-foreground/90">
                       {slide.discount}
                     </span>
                     <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight">
@@ -120,7 +120,7 @@ export function HeroCarousel() {
         variant="outline"
         size="icon"
         onClick={scrollPrev}
-        className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-white/10 text-white/70 hover:text-white hover:border-white/20 hover:bg-white/5 cursor-pointer transition-all duration-200"
+        className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-border text-foreground/70 hover:text-foreground hover:border-border hover:bg-muted cursor-pointer transition-all duration-200"
       >
         <ChevronLeft className="size-5" />
       </Button>
@@ -128,7 +128,7 @@ export function HeroCarousel() {
         variant="outline"
         size="icon"
         onClick={scrollNext}
-        className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-white/10 text-white/70 hover:text-white hover:border-white/20 hover:bg-white/5 cursor-pointer transition-all duration-200"
+        className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-border text-foreground/70 hover:text-foreground hover:border-border hover:bg-muted cursor-pointer transition-all duration-200"
       >
         <ChevronRight className="size-5" />
       </Button>
@@ -143,7 +143,7 @@ export function HeroCarousel() {
               "h-2 rounded-full transition-all duration-300 cursor-pointer",
               current === index
                 ? "w-8 bg-neon-cyan shadow-[0_0_8px_rgba(0,229,255,0.4)]"
-                : "w-2 bg-white/20 hover:bg-white/35"
+                : "w-2 dark:bg-white/20 bg-black/15 dark:hover:bg-white/35 hover:bg-black/25"
             )}
           />
         ))}

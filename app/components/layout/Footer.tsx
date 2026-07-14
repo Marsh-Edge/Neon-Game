@@ -53,7 +53,7 @@ const paymentMethods = [
 export function Footer() {
   return (
     <footer className="w-full mt-auto">
-      <div className="glass rounded-t-2xl border-t border-white/[0.06]">
+      <div className="glass rounded-t-2xl border-t border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
           {/* Top: Logo + Links */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
@@ -63,11 +63,11 @@ export function Footer() {
                 <div className="flex size-8 items-center justify-center rounded-lg bg-neon-cyan/10 border border-neon-cyan/20">
                   <Gamepad2 className="size-4 text-neon-cyan" />
                 </div>
-                <span className="font-[family-name:var(--font-display)] text-lg font-bold text-white">
+                <span className="font-[family-name:var(--font-display)] text-lg font-bold text-foreground">
                   NEON<span className="text-neon-cyan">GAME</span>
                 </span>
               </Link>
-              <p className="text-sm text-slate-500 max-w-xs mb-4">
+              <p className="text-sm text-muted-foreground max-w-xs mb-4">
                 Your premium destination for the latest games at the best
                 prices.
               </p>
@@ -77,7 +77,7 @@ export function Footer() {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="flex size-9 items-center justify-center rounded-lg glass border border-white/[0.06] text-slate-500 hover:text-neon-purple hover:border-neon-purple/30 hover:shadow-[0_0_12px_rgba(168,85,247,0.15)] transition-all duration-200 hover:scale-105"
+                    className="flex size-9 items-center justify-center rounded-lg glass border border-border text-muted-foreground hover:text-neon-purple hover:border-neon-purple/30 hover:shadow-[0_0_12px_rgba(168,85,247,0.15)] transition-all duration-200 hover:scale-105"
                   >
                     <social.icon className="size-4" />
                   </a>
@@ -88,7 +88,7 @@ export function Footer() {
             {/* Link Columns */}
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
-                <h4 className="font-[family-name:var(--font-display)] text-xs font-semibold text-white/60 mb-3 uppercase tracking-wider">
+                <h4 className="font-[family-name:var(--font-display)] text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">
                   {category}
                 </h4>
                 <ul className="space-y-2">
@@ -96,7 +96,7 @@ export function Footer() {
                     <li key={link.label}>
                       <a
                         href={link.href}
-                        className="text-sm text-slate-500 hover:text-neon-cyan transition-colors duration-200"
+                        className="text-sm text-muted-foreground hover:text-neon-cyan transition-colors duration-200"
                       >
                         {link.label}
                       </a>
@@ -107,18 +107,18 @@ export function Footer() {
             ))}
           </div>
 
-          <Separator className="my-8 bg-white/[0.06]" />
+          <Separator className="my-8 bg-border" />
 
           {/* Bottom: Copyright + Payment */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-slate-600">
+            <p className="text-xs text-muted-foreground/60">
               &copy; 2026 NeonGame. All rights reserved.
             </p>
             <div className="flex items-center gap-2">
               {paymentMethods.map((method) => (
                 <div
                   key={method}
-                  className="flex items-center justify-center px-3 py-1.5 rounded-lg glass border border-white/[0.06] text-[10px] font-medium text-slate-500 uppercase tracking-wider"
+                  className="flex items-center justify-center px-3 py-1.5 rounded-lg glass border border-border text-[10px] font-medium text-muted-foreground uppercase tracking-wider"
                 >
                   {method}
                 </div>

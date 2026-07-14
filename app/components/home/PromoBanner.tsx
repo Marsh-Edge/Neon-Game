@@ -20,17 +20,17 @@ export function PromoBanner() {
                 Limited Time
               </span>
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">
+            <h2 className="font-[family-name:var(--font-display)] text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2">
               Summer Sale
             </h2>
-            <p className="text-base text-white/50">
+            <p className="text-base text-muted-foreground">
               Up to <span className="font-bold text-neon-cyan">70% off</span> on
               thousands of games
             </p>
           </div>
 
           <div className="flex flex-col items-center gap-3">
-            <div className="flex items-center gap-2 text-sm text-white/40">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground/80">
               <Timer className="size-4" />
               <span>Ends in 3 days</span>
             </div>

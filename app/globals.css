@@ -45,6 +45,9 @@
   --color-status-success: var(--status-success);
   --color-status-warning: var(--status-warning);
   --color-status-error: var(--status-error);
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-bg-strong: var(--glass-bg-strong);
+  --color-glass-border: var(--glass-border);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -54,7 +57,57 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* Light mode (default) */
 :root {
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --card: rgba(0, 0, 0, 0.03);
+  --card-foreground: #0F172A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
+  --primary: #00B8D4;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F1F5F9;
+  --secondary-foreground: #0F172A;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: #9333EA;
+  --accent-foreground: #FFFFFF;
+  --destructive: #EF4444;
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.08);
+  --ring: #00B8D4;
+  --chart-1: #00B8D4;
+  --chart-2: #9333EA;
+  --chart-3: #EC4899;
+  --chart-4: #22C55E;
+  --chart-5: #F59E0B;
+  --radius: 0.75rem;
+  --neon-cyan: #00B8D4;
+  --neon-purple: #9333EA;
+  --neon-magenta: #EC4899;
+  --status-success: #22C55E;
+  --status-warning: #F59E0B;
+  --status-error: #EF4444;
+  --sidebar: #F8FAFC;
+  --sidebar-foreground: #0F172A;
+  --sidebar-primary: #00B8D4;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: rgba(147, 51, 234, 0.08);
+  --sidebar-accent-foreground: #0F172A;
+  --sidebar-border: rgba(0, 0, 0, 0.08);
+  --sidebar-ring: #00B8D4;
+  /* Glass / frosted tokens for light mode */
+  --glass-bg: rgba(0, 0, 0, 0.03);
+  --glass-bg-strong: rgba(0, 0, 0, 0.05);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --frosted-from: rgba(248, 250, 252, 0.95);
+  --frosted-to: rgba(248, 250, 252, 0.9);
+  --frosted-shadow-top: rgba(0, 0, 0, 0.06);
+  --frosted-shadow-blur: rgba(0, 0, 0, 0.08);
+}
+
+.dark {
   --background: #0A0A1A;
   --foreground: #E2E8F0;
   --card: rgba(255, 255, 255, 0.06);
@@ -93,6 +146,14 @@
   --sidebar-accent-foreground: #E2E8F0;
   --sidebar-border: rgba(255, 255, 255, 0.08);
   --sidebar-ring: #00E5FF;
+  /* Glass / frosted tokens for dark mode */
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-bg-strong: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --frosted-from: rgba(8, 8, 20, 0.95);
+  --frosted-to: rgba(8, 8, 20, 0.9);
+  --frosted-shadow-top: rgba(255, 255, 255, 0.06);
+  --frosted-shadow-blur: rgba(0, 0, 0, 0.5);
 }
 
 @layer base {
@@ -111,30 +172,30 @@
 @layer utilities {
   /* Base glass */
   .glass {
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--glass-bg);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
   }
   .glass-strong {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--glass-bg-strong);
     backdrop-filter: blur(24px) saturate(200%);
     -webkit-backdrop-filter: blur(24px) saturate(200%);
   }
   .glass-border {
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
   }
   .glass-border-strong {
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid var(--glass-border-strong);
   }
 
-  /* Frosted header — near-opaque dark tint, deep blur, depth shadow */
+  /* Frosted header — near-opaque tint, deep blur, depth shadow */
   .frosted {
-    background: linear-gradient(180deg, rgba(8, 8, 20, 0.95) 0%, rgba(8, 8, 20, 0.9) 100%);
+    background: linear-gradient(180deg, var(--frosted-from) 0%, var(--frosted-to) 100%);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
     box-shadow:
-      0 1px 0 0 rgba(255, 255, 255, 0.06),
-      0 4px 30px rgba(0, 0, 0, 0.5);
+      0 1px 0 0 var(--frosted-shadow-top),
+      0 4px 30px var(--frosted-shadow-blur);
     isolation: isolate;
   }
 
@@ -175,6 +236,9 @@
   }
   .card-hover:hover {
     transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 229, 255, 0.04);
+  }
+  .dark .card-hover:hover {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 229, 255, 0.06);
   }
 
@@ -201,10 +265,10 @@
 
   /* Frosted input */
   .frosted-input {
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--glass-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
   .frosted-input:focus {
@@ -272,12 +336,21 @@
 .animate-shimmer {
   background: linear-gradient(
     90deg,
+    rgba(0, 0, 0, 0.02) 25%,
+    rgba(0, 0, 0, 0.05) 50%,
+    rgba(0, 0, 0, 0.02) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+.dark .animate-shimmer {
+  background: linear-gradient(
+    90deg,
     rgba(255, 255, 255, 0.03) 25%,
     rgba(255, 255, 255, 0.08) 50%,
     rgba(255, 255, 255, 0.03) 75%
   );
   background-size: 200% 100%;
-  animation: shimmer 2s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -18,7 +18,7 @@ export function GameRow({ title, games, seeAllHref = "#" }: GameRowProps) {
   return (
     <section className="w-full">
       <div className="flex items-center justify-between mb-5">
-        <h2 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl font-bold text-white">
+        <h2 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl font-bold text-foreground">
           {title}
         </h2>
         <a

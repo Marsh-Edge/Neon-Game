@@ -28,10 +28,10 @@ export function Newsletter() {
               <Zap className="size-5 text-neon-cyan" />
             </div>
             <div>
-              <h3 className="font-[family-name:var(--font-display)] text-lg font-bold text-white">
+              <h3 className="font-[family-name:var(--font-display)] text-lg font-bold text-foreground">
                 Stay in the Loop
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-muted-foreground">
                 Get deals before anyone else
               </p>
             </div>
@@ -50,14 +50,14 @@ export function Newsletter() {
               className="flex w-full sm:max-w-md gap-2"
             >
               <div className="relative flex-1">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-500" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                 <Input
                   type="email"
                   placeholder="your@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="pl-9 frosted-input rounded-xl text-sm text-white placeholder:text-slate-500 h-9"
+                  className="pl-9 frosted-input rounded-xl text-sm text-foreground placeholder:text-muted-foreground h-9"
                 />
               </div>
               <Button
