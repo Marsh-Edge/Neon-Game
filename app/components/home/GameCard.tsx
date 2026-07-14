@@ -21,7 +21,7 @@ export function GameCard({ game }: GameCardProps) {
       )}
     >
       {/* Image Placeholder */}
-      <div className="relative aspect-video bg-gradient-to-br dark:from-white/[0.07] dark:to-white/[0.02] from-black/[0.05] to-black/[0.02] overflow-hidden">
+        <div className="relative aspect-video rounded-t-xl bg-gradient-to-br dark:from-white/[0.07] dark:to-white/[0.02] from-black/[0.05] to-black/[0.02] overflow-hidden">
         <div className="absolute inset-0 animate-shimmer" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-12 h-12 rounded-lg dark:bg-white/[0.07] dark:border-white/[0.08] bg-black/[0.05] border-black/[0.08] border flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
