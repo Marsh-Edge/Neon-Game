@@ -242,6 +242,68 @@
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 229, 255, 0.06);
   }
 
+  /* Neon gradient glow hover */
+  .neon-card-hover {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .neon-card-hover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      var(--neon-cyan),
+      var(--neon-purple),
+      var(--neon-magenta),
+      var(--neon-cyan)
+    );
+    background-size: 300% 300%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .neon-card-hover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      ellipse at 50% 0%,
+      rgba(0, 229, 255, 0.06) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .neon-card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 8px 30px rgba(0, 0, 0, 0.2),
+      0 0 20px rgba(0, 229, 255, 0.15),
+      0 0 60px rgba(0, 229, 255, 0.05);
+  }
+  .dark .neon-card-hover:hover {
+    box-shadow:
+      0 8px 30px rgba(0, 0, 0, 0.4),
+      0 0 25px rgba(0, 229, 255, 0.2),
+      0 0 80px rgba(0, 229, 255, 0.08);
+  }
+  .neon-card-hover:hover::before {
+    opacity: 1;
+  }
+  .neon-card-hover:hover::after {
+    opacity: 1;
+  }
+
   /* Nav underline link */
   .nav-link {
     position: relative;

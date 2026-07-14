@@ -16,8 +16,7 @@ export function GameCard({ game }: GameCardProps) {
     <div
       className={cn(
         "group flex flex-col rounded-xl overflow-hidden",
-        "glass glass-border card-hover",
-        "hover:border-white/15 dark:hover:border-white/15 hover:border-black/15",
+        "glass glass-border neon-card-hover",
         "min-w-[220px] w-[220px] sm:min-w-[240px] sm:w-[240px] shrink-0"
       )}
     >
