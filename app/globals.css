@@ -127,14 +127,15 @@
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
 
-  /* Frosted header — deeper blur, darker tint, depth shadow */
+  /* Frosted header — near-opaque dark tint, deep blur, depth shadow */
   .frosted {
-    background: rgba(10, 10, 26, 0.72);
+    background: linear-gradient(180deg, rgba(8, 8, 20, 0.95) 0%, rgba(8, 8, 20, 0.9) 100%);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
     box-shadow:
       0 1px 0 0 rgba(255, 255, 255, 0.06),
-      0 4px 24px rgba(0, 0, 0, 0.35);
+      0 4px 30px rgba(0, 0, 0, 0.5);
+    isolation: isolate;
   }
 
   /* Neon glows */

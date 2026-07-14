@@ -89,7 +89,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-white/[0.06] py-4 space-y-1">
+          <div className="md:hidden frosted border border-white/[0.06] rounded-xl -mx-2 mb-3 py-4 space-y-1">
             <div className="sm:hidden relative mb-3">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-500" />
               <Input
