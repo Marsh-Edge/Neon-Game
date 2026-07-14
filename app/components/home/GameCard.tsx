@@ -16,16 +16,17 @@ export function GameCard({ game }: GameCardProps) {
     <div
       className={cn(
         "group flex flex-col rounded-xl overflow-hidden",
-        "glass glass-border",
-        "hover:bg-white/[0.08] hover:border-white/20",
-        "transition-all duration-200 cursor-pointer min-w-[220px] w-[220px] sm:min-w-[240px] sm:w-[240px] shrink-0"
+        "glass glass-border card-hover",
+        "hover:border-white/15",
+        "min-w-[220px] w-[220px] sm:min-w-[240px] sm:w-[240px] shrink-0"
       )}
     >
       {/* Image Placeholder */}
-      <div className="relative aspect-video bg-gradient-to-br from-white/10 to-white/[0.02] overflow-hidden">
+      <div className="relative aspect-video bg-gradient-to-br from-white/[0.07] to-white/[0.02] overflow-hidden">
+        <div className="absolute inset-0 animate-shimmer" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center">
-            <span className="font-[family-name:var(--font-display)] text-lg text-white/40">
+          <div className="w-12 h-12 rounded-lg bg-white/[0.07] border border-white/[0.08] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+            <span className="font-[family-name:var(--font-display)] text-lg text-white/30">
               {game.title.charAt(0)}
             </span>
           </div>
@@ -34,7 +35,7 @@ export function GameCard({ game }: GameCardProps) {
         {/* Discount Badge */}
         {hasDiscount && game.discount && (
           <div className="absolute top-2 left-2">
-            <Badge className="bg-neon-magenta text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5">
+            <Badge className="bg-neon-magenta text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5 shadow-[0_0_10px_rgba(255,46,147,0.3)]">
               -{game.discount}%
             </Badge>
           </div>
@@ -60,19 +61,19 @@ export function GameCard({ game }: GameCardProps) {
 
         {game.badge === "trending" && (
           <div className="absolute top-2 right-2">
-            <Badge className="bg-neon-purple text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5">
+            <Badge className="bg-neon-purple text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
               HOT
             </Badge>
           </div>
         )}
 
         {/* Hover overlay */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-3 gap-2">
-        <h3 className="font-medium text-sm text-foreground line-clamp-1 group-hover:text-neon-cyan transition-colors duration-200">
+      <div className="flex flex-col flex-1 p-3.5 gap-2">
+        <h3 className="font-medium text-sm text-white/90 line-clamp-1 group-hover:text-neon-cyan transition-colors duration-200">
           {game.title}
         </h3>
 
@@ -81,7 +82,7 @@ export function GameCard({ game }: GameCardProps) {
           {game.genres.map((genre) => (
             <span
               key={genre}
-              className="text-[10px] text-muted-foreground bg-white/5 px-1.5 py-0.5 rounded"
+              className="text-[10px] text-slate-500 bg-white/[0.04] px-1.5 py-0.5 rounded-md"
             >
               {genre}
             </span>
@@ -91,7 +92,7 @@ export function GameCard({ game }: GameCardProps) {
         {/* Rating */}
         <div className="flex items-center gap-1">
           <Star className="size-3 fill-status-warning text-status-warning" />
-          <span className="text-xs font-medium text-muted-foreground">
+          <span className="text-xs font-medium text-slate-500">
             {game.rating}
           </span>
         </div>
@@ -100,16 +101,16 @@ export function GameCard({ game }: GameCardProps) {
         <div className="flex items-center justify-between mt-auto pt-1">
           <div className="flex items-baseline gap-2">
             {isFree ? (
-              <span className="text-sm font-bold text-status-success neon-text-cyan">
+              <span className="text-sm font-bold text-status-success">
                 Free
               </span>
             ) : (
               <>
-                <span className="text-sm font-bold text-neon-cyan">
+                <span className="text-base font-bold text-neon-cyan">
                   ${game.price.toFixed(2)}
                 </span>
                 {hasDiscount && (
-                  <span className="text-xs text-muted-foreground line-through">
+                  <span className="text-xs text-slate-600 line-through">
                     ${game.originalPrice!.toFixed(2)}
                   </span>
                 )}
@@ -119,7 +120,7 @@ export function GameCard({ game }: GameCardProps) {
           <Button
             size="icon"
             variant="ghost"
-            className="size-8 text-muted-foreground hover:text-neon-cyan hover:bg-white/5 cursor-pointer"
+            className="size-8 text-slate-500 hover:text-neon-cyan hover:bg-neon-cyan/10 rounded-lg cursor-pointer transition-all duration-200"
           >
             <ShoppingCart className="size-4" />
           </Button>

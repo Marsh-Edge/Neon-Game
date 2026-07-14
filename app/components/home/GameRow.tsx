@@ -12,12 +12,12 @@ export function GameRow({ title, games, seeAllHref = "#" }: GameRowProps) {
   return (
     <section className="w-full">
       <div className="flex items-center justify-between mb-5">
-        <h2 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl font-bold text-foreground">
+        <h2 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl font-bold text-white">
           {title}
         </h2>
         <a
           href={seeAllHref}
-          className="flex items-center gap-1 text-sm font-medium text-neon-cyan hover:text-neon-cyan/80 transition-colors duration-200"
+          className="flex items-center gap-1 text-sm font-medium text-neon-cyan/70 hover:text-neon-cyan transition-colors duration-200"
         >
           See all
           <ChevronRight className="size-4" />

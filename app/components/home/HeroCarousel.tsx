@@ -60,7 +60,7 @@ export function HeroCarousel() {
         className="w-full"
       >
         <CarouselContent>
-          {heroSlides.map((slide) => (
+          {heroSlides.map((slide, index) => (
             <CarouselItem key={slide.id}>
               <div
                 className={cn(
@@ -68,28 +68,36 @@ export function HeroCarousel() {
                   slide.gradient
                 )}
               >
-                {/* Decorative neon elements */}
-                <div className="absolute inset-0 opacity-30">
-                  <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
-                  <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
+                {/* Ken Burns zoom on active slide */}
+                <div
+                  className={cn(
+                    "absolute inset-0",
+                    current === index && "animate-ken-burns"
+                  )}
+                >
+                  {/* Decorative neon elements */}
+                  <div className="absolute inset-0 opacity-30">
+                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+                    <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
+                  </div>
                 </div>
 
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col justify-center px-8 sm:px-12 lg:px-20">
                   <div className="max-w-xl">
-                    <span className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider uppercase rounded-full glass glass-border text-white">
+                    <span className="inline-block px-3 py-1 mb-4 text-[11px] font-semibold tracking-wider uppercase rounded-full glass glass-border text-white/90">
                       {slide.discount}
                     </span>
                     <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight">
                       {slide.title}
                     </h2>
-                    <p className="text-base sm:text-lg text-white/70 mb-6">
+                    <p className="text-base sm:text-lg text-white/60 mb-6 font-light">
                       {slide.subtitle}
                     </p>
                     <Button
                       size="lg"
                       className={cn(
-                        "font-semibold px-8 h-11 text-sm cursor-pointer",
+                        "font-semibold px-8 h-11 text-sm cursor-pointer rounded-xl",
                         slide.accentColor === "neon-cyan"
                           ? "bg-neon-cyan text-black hover:bg-neon-cyan/80 neon-glow-cyan"
                           : slide.accentColor === "neon-magenta"
@@ -107,12 +115,12 @@ export function HeroCarousel() {
         </CarouselContent>
       </Carousel>
 
-      {/* Custom Navigation Arrows */}
+      {/* Frosted Navigation Arrows */}
       <Button
         variant="outline"
         size="icon"
         onClick={scrollPrev}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full glass glass-border border-white/20 text-white hover:bg-white/10 hover:text-white cursor-pointer"
+        className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-white/10 text-white/70 hover:text-white hover:border-white/20 hover:bg-white/5 cursor-pointer transition-all duration-200"
       >
         <ChevronLeft className="size-5" />
       </Button>
@@ -120,13 +128,13 @@ export function HeroCarousel() {
         variant="outline"
         size="icon"
         onClick={scrollNext}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full glass glass-border border-white/20 text-white hover:bg-white/10 hover:text-white cursor-pointer"
+        className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-white/10 text-white/70 hover:text-white hover:border-white/20 hover:bg-white/5 cursor-pointer transition-all duration-200"
       >
         <ChevronRight className="size-5" />
       </Button>
 
       {/* Dots */}
-      <div className="flex justify-center gap-2 mt-4">
+      <div className="flex justify-center gap-2.5 mt-5">
         {heroSlides.map((_, index) => (
           <button
             key={index}
@@ -134,8 +142,8 @@ export function HeroCarousel() {
             className={cn(
               "h-2 rounded-full transition-all duration-300 cursor-pointer",
               current === index
-                ? "w-8 bg-neon-cyan neon-glow-cyan"
-                : "w-2 bg-white/30 hover:bg-white/50"
+                ? "w-8 bg-neon-cyan shadow-[0_0_8px_rgba(0,229,255,0.4)]"
+                : "w-2 bg-white/20 hover:bg-white/35"
             )}
           />
         ))}
