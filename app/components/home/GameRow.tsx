@@ -37,7 +37,7 @@ export function GameRow({ title, games, seeAllHref = "#" }: GameRowProps) {
         )}
       >
         {games.map((game) => (
-          <div key={game.id} className="shrink-0 px-1">
+          <div key={game.id} className="shrink-0 px-3">
             <GameCard game={game} />
           </div>
         ))}
