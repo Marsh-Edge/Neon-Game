@@ -299,6 +299,7 @@
   }
   .neon-card-hover:hover::before {
     opacity: 1;
+    animation: neon-gradient-shift 4s ease infinite;
   }
   .neon-card-hover:hover::after {
     opacity: 1;
@@ -383,6 +384,12 @@
   100% { background-position: 200% 0; }
 }
 
+@keyframes neon-gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
@@ -419,7 +426,8 @@
   .animate-ticker,
   .animate-pulse-glow,
   .animate-ken-burns,
-  .animate-shimmer {
+  .animate-shimmer,
+  .neon-card-hover::before {
     animation: none;
   }
   .card-hover:hover {
