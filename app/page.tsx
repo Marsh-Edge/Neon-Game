@@ -3,7 +3,7 @@ import { Footer } from "./components/layout/Footer";
 import { HeroCarousel } from "./components/home/HeroCarousel";
 import { CategoryBar } from "./components/home/CategoryBar";
 import { GameRow } from "./components/home/GameRow";
-import { GameGrid } from "./components/home/GameGrid";
+
 import { PromoBanner } from "./components/home/PromoBanner";
 import { SocialProof } from "./components/home/SocialProof";
 import { Newsletter } from "./components/home/Newsletter";
@@ -42,8 +42,8 @@ export default function Home() {
           {/* Social Proof */}
           <SocialProof />
 
-          {/* New Releases Grid */}
-          <GameGrid title="New Releases" games={newReleases} />
+          {/* New Releases */}
+          <GameRow title="New Releases" games={newReleases} />
 
           {/* Free Games */}
           <GameRow
