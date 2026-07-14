@@ -1,6 +1,10 @@
+"use client";
+
 import { ChevronRight } from "lucide-react";
 import { GameCard } from "./GameCard";
+import { useDragScroll } from "@/hooks/useDragScroll";
 import type { Game } from "@/app/data/games";
+import { cn } from "@/lib/utils";
 
 interface GameRowProps {
   title: string;
@@ -9,6 +13,8 @@ interface GameRowProps {
 }
 
 export function GameRow({ title, games, seeAllHref = "#" }: GameRowProps) {
+  const { ref, isDragging } = useDragScroll();
+
   return (
     <section className="w-full">
       <div className="flex items-center justify-between mb-5">
@@ -23,7 +29,13 @@ export function GameRow({ title, games, seeAllHref = "#" }: GameRowProps) {
           <ChevronRight className="size-4" />
         </a>
       </div>
-      <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 -mx-4 px-4">
+      <div
+        ref={ref}
+        className={cn(
+          "flex gap-4 overflow-x-auto scrollbar-hide pb-2 -mx-4 px-4",
+          isDragging ? "cursor-grabbing select-none" : "cursor-grab"
+        )}
+      >
         {games.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}
