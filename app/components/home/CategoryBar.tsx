@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   Swords,
   Shield,
@@ -38,8 +39,8 @@ export function CategoryBar() {
           const Icon = iconMap[cat.icon] || Sparkles;
           return (
             <StaggerItem key={cat.id}>
-              <a
-                href={`#${cat.id}`}
+              <Link
+                href={`/categories/${cat.id}`}
                 className={cn(
                   "group flex flex-col items-center gap-2.5 p-4 rounded-xl",
                   "glass glass-border",
@@ -51,7 +52,7 @@ export function CategoryBar() {
                 <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground/80 transition-colors duration-250">
                   {cat.name}
                 </span>
-              </a>
+              </Link>
             </StaggerItem>
           );
         })}
