@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import {
   Carousel,
@@ -96,19 +97,21 @@ export function HeroCarousel() {
                       <p className="text-base sm:text-lg text-white/60 mb-6 font-light">
                         {slide.subtitle}
                       </p>
-                      <Button
-                        size="lg"
-                        className={cn(
-                          "font-semibold px-8 h-11 text-sm cursor-pointer rounded-xl",
-                          slide.accentColor === "neon-cyan"
-                            ? "bg-neon-cyan text-black hover:bg-neon-cyan/80 neon-glow-cyan"
-                            : slide.accentColor === "neon-magenta"
-                            ? "bg-neon-magenta text-white hover:bg-neon-magenta/80 neon-glow-magenta"
-                            : "bg-neon-purple text-white hover:bg-neon-purple/80 neon-glow-purple"
-                        )}
-                      >
-                        {slide.ctaText}
-                      </Button>
+                      <Link href={slide.href}>
+                        <Button
+                          size="lg"
+                          className={cn(
+                            "font-semibold px-8 h-11 text-sm cursor-pointer rounded-xl",
+                            slide.accentColor === "neon-cyan"
+                              ? "bg-neon-cyan text-black hover:bg-neon-cyan/80 neon-glow-cyan"
+                              : slide.accentColor === "neon-magenta"
+                              ? "bg-neon-magenta text-white hover:bg-neon-magenta/80 neon-glow-magenta"
+                              : "bg-neon-purple text-white hover:bg-neon-purple/80 neon-glow-purple"
+                          )}
+                        >
+                          {slide.ctaText}
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </div>

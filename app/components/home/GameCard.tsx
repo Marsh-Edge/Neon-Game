@@ -1,3 +1,5 @@
+"use client";
+
 import { ShoppingCart, Star, Heart } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";

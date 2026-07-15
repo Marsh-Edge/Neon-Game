@@ -24,7 +24,6 @@ export function useDragScroll() {
     dragState.current.hasMoved = false;
     dragState.current.startX = e.pageX;
     dragState.current.scrollLeft = el.scrollLeft;
-    el.setPointerCapture(e.pointerId);
   }, []);
 
   const onPointerMove = useCallback((e: React.PointerEvent) => {
@@ -36,8 +35,11 @@ export function useDragScroll() {
     // Require 5px movement before treating as a drag (avoids intercepting clicks)
     if (!dragState.current.hasMoved && Math.abs(dx) < 5) return;
 
-    dragState.current.hasMoved = true;
-    setIsDragging(true);
+    if (!dragState.current.hasMoved) {
+      dragState.current.hasMoved = true;
+      setIsDragging(true);
+      el.setPointerCapture(e.pointerId);
+    }
     el.scrollLeft = dragState.current.scrollLeft - dx;
     e.preventDefault();
   }, []);

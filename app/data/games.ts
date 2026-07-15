@@ -25,6 +25,7 @@ export const heroSlides = [
     gradient: "from-purple-900 via-indigo-900 to-cyan-900",
     accentColor: "neon-cyan",
     ctaText: "View Deal",
+    href: "/deals",
     discount: "40% OFF",
   },
   {
@@ -34,6 +35,7 @@ export const heroSlides = [
     gradient: "from-rose-900 via-pink-900 to-purple-900",
     accentColor: "neon-magenta",
     ctaText: "Pre-order Now",
+    href: "/games",
     discount: "EARLY ACCESS",
   },
   {
@@ -43,6 +45,7 @@ export const heroSlides = [
     gradient: "from-cyan-900 via-teal-900 to-emerald-900",
     accentColor: "neon-cyan",
     ctaText: "Play Free",
+    href: "/deals",
     discount: "FREE TO PLAY",
   },
   {
@@ -52,6 +55,7 @@ export const heroSlides = [
     gradient: "from-violet-900 via-purple-900 to-fuchsia-900",
     accentColor: "neon-purple",
     ctaText: "Get It Now",
+    href: "/deals",
     discount: "25% OFF",
   },
 ];
