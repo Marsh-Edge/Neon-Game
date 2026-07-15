@@ -11,7 +11,7 @@ import { ThemeToggle } from "./ThemeToggle";
 const navLinks = [
   { label: "Games", href: "/games", isRoute: true },
   { label: "Categories", href: "#categories", isRoute: false },
-  { label: "Deals", href: "#deals", isRoute: false },
+  { label: "Deals", href: "/deals", isRoute: true },
   { label: "Wishlist", href: "#wishlist", isRoute: false },
 ];
 

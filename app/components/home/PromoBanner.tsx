@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Flame, Timer, ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -38,13 +39,15 @@ export function PromoBanner() {
                 <Timer className="size-4" />
                 <span>Ends in 3 days</span>
               </div>
-              <Button
-                size="lg"
-                className="bg-neon-magenta text-white hover:bg-neon-magenta/80 neon-glow-magenta font-semibold px-8 h-11 text-sm cursor-pointer rounded-xl gap-2"
-              >
-                Shop the Sale
-                <ArrowRight className="size-4" />
-              </Button>
+              <Link href="/deals">
+                <Button
+                  size="lg"
+                  className="bg-neon-magenta text-white hover:bg-neon-magenta/80 neon-glow-magenta font-semibold px-8 h-11 text-sm cursor-pointer rounded-xl gap-2"
+                >
+                  Shop the Sale
+                  <ArrowRight className="size-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
