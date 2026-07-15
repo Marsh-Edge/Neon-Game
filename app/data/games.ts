@@ -338,6 +338,15 @@ export const freeGames: Game[] = [
   },
 ];
 
+export const allGames: Game[] = [
+  ...bestSellers,
+  ...recommended,
+  ...newReleases,
+  ...freeGames,
+].filter(
+  (game, index, self) => self.findIndex((g) => g.id === game.id) === index
+);
+
 export const socialProof = {
   activeViewers: 2847,
   recentPurchases: [

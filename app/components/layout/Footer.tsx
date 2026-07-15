@@ -10,11 +10,11 @@ import { Separator } from "@/components/ui/separator";
 
 const footerLinks = {
   store: [
-    { label: "All Games", href: "#" },
-    { label: "New Releases", href: "#" },
-    { label: "On Sale", href: "#" },
-    { label: "Free to Play", href: "#" },
-    { label: "Pre-orders", href: "#" },
+    { label: "All Games", href: "/games" },
+    { label: "New Releases", href: "/games" },
+    { label: "On Sale", href: "/games" },
+    { label: "Free to Play", href: "/games" },
+    { label: "Pre-orders", href: "/games" },
   ],
   support: [
     { label: "Help Center", href: "#" },
@@ -94,12 +94,12 @@ export function Footer() {
                 <ul className="space-y-2">
                   {links.map((link) => (
                     <li key={link.label}>
-                      <a
+                      <Link
                         href={link.href}
                         className="text-sm text-muted-foreground hover:text-neon-cyan transition-colors duration-200"
                       >
                         {link.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
