@@ -6,8 +6,10 @@ import type { Game } from "@/app/data/games";
 interface CartContextType {
   items: Game[];
   itemCount: number;
+  total: number;
   addItem: (game: Game) => void;
   removeItem: (gameId: string) => void;
+  clearCart: () => void;
   isInCart: (gameId: string) => boolean;
 }
 
@@ -27,13 +29,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setItems((prev) => prev.filter((item) => item.id !== gameId));
   }, []);
 
+  const clearCart = useCallback(() => {
+    setItems([]);
+  }, []);
+
   const isInCart = useCallback(
     (gameId: string) => items.some((item) => item.id === gameId),
     [items]
   );
 
+  const total = items.reduce((sum, item) => sum + item.price, 0);
+
   return (
-    <CartContext.Provider value={{ items, itemCount: items.length, addItem, removeItem, isInCart }}>
+    <CartContext.Provider value={{ items, itemCount: items.length, total, addItem, removeItem, clearCart, isInCart }}>
       {children}
     </CartContext.Provider>
   );

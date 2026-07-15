@@ -84,18 +84,20 @@ export function Header() {
             >
               <User className="size-[18px]" />
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
-            >
-              <ShoppingCart className="size-[18px]" />
-              {itemCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white shadow-[0_0_8px_rgba(255,46,147,0.4)]">
-                  {itemCount}
-                </span>
-              )}
-            </Button>
+            <Link href="/cart">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
+              >
+                <ShoppingCart className="size-[18px]" />
+                {itemCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white shadow-[0_0_8px_rgba(255,46,147,0.4)]">
+                    {itemCount}
+                  </span>
+                )}
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -155,18 +157,20 @@ export function Header() {
               >
                 <User className="size-[18px]" />
               </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
-              >
-                <ShoppingCart className="size-[18px]" />
-                {itemCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white">
-                    {itemCount}
-                  </span>
-                )}
-              </Button>
+              <Link href="/cart" onClick={() => setMobileMenuOpen(false)}>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
+                >
+                  <ShoppingCart className="size-[18px]" />
+                  {itemCount > 0 && (
+                    <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white">
+                      {itemCount}
+                    </span>
+                  )}
+                </Button>
+              </Link>
             </div>
           </div>
         )}
