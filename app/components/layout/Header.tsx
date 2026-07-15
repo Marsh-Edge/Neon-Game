@@ -10,10 +10,10 @@ import { useWishlist } from "@/app/context/WishlistContext";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
-  { label: "Games", href: "/games", isRoute: true },
-  { label: "Categories", href: "#categories", isRoute: false },
-  { label: "Deals", href: "/deals", isRoute: true },
-  { label: "Wishlist", href: "/wishlist", isRoute: true },
+  { label: "Games", href: "/games" },
+  { label: "Categories", href: "/categories" },
+  { label: "Deals", href: "/deals" },
+  { label: "Wishlist", href: "/wishlist" },
 ];
 
 export function Header() {
@@ -37,25 +37,15 @@ export function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1 ml-6">
-            {navLinks.map((link) =>
-              link.isRoute ? (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="nav-link px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground rounded-lg"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="nav-link px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground rounded-lg"
-                >
-                  {link.label}
-                </a>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="nav-link px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground rounded-lg"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
           {/* Search Bar */}
@@ -133,27 +123,16 @@ export function Header() {
                 className="pl-9 frosted-input rounded-xl text-sm text-foreground placeholder:text-muted-foreground h-9"
               />
             </div>
-            {navLinks.map((link) =>
-              link.isRoute ? (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="block px-3 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-muted transition-colors duration-200"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="block px-3 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-muted transition-colors duration-200"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="block px-3 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-muted transition-colors duration-200"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
             <div className="flex items-center gap-1 px-2 pt-3 mt-2 border-t border-border">
               <Link href="/wishlist" onClick={() => setMobileMenuOpen(false)}>
                 <Button
