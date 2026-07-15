@@ -1,9 +1,10 @@
-import { ShoppingCart, Star } from "lucide-react";
+import { ShoppingCart, Star, Heart } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { Game } from "@/app/data/games";
 import { useCart } from "@/app/context/CartContext";
+import { useWishlist } from "@/app/context/WishlistContext";
 import { cn } from "@/lib/utils";
 
 interface GameCardProps {
@@ -12,6 +13,7 @@ interface GameCardProps {
 
 export function GameCard({ game }: GameCardProps) {
   const { addItem, isInCart } = useCart();
+  const { toggleItem, isWishlisted } = useWishlist();
   const hasDiscount = game.originalPrice && game.originalPrice > game.price;
   const isFree = game.isFree || game.price === 0;
 
@@ -127,20 +129,38 @@ export function GameCard({ game }: GameCardProps) {
               </>
             )}
           </div>
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={handleAddToCart}
-            disabled={isInCart(game.id)}
-            className={cn(
-              "size-8 rounded-lg cursor-pointer transition-all duration-200",
-              isInCart(game.id)
-                ? "text-status-success hover:text-status-success"
-                : "text-muted-foreground hover:text-neon-cyan hover:bg-neon-cyan/10"
-            )}
-          >
-            <ShoppingCart className="size-4" />
-          </Button>
+          <div className="flex items-center gap-0.5">
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => toggleItem(game)}
+              className={cn(
+                "size-8 rounded-lg cursor-pointer transition-all duration-200",
+                isWishlisted(game.id)
+                  ? "text-neon-magenta hover:text-neon-magenta"
+                  : "text-muted-foreground hover:text-neon-magenta hover:bg-neon-magenta/10"
+              )}
+            >
+              <Heart
+                className="size-4"
+                fill={isWishlisted(game.id) ? "currentColor" : "none"}
+              />
+            </Button>
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={handleAddToCart}
+              disabled={isInCart(game.id)}
+              className={cn(
+                "size-8 rounded-lg cursor-pointer transition-all duration-200",
+                isInCart(game.id)
+                  ? "text-status-success hover:text-status-success"
+                  : "text-muted-foreground hover:text-neon-cyan hover:bg-neon-cyan/10"
+              )}
+            >
+              <ShoppingCart className="size-4" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>

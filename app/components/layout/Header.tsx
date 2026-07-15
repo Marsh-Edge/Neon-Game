@@ -2,22 +2,24 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Search, ShoppingCart, User, Menu, X, Gamepad2 } from "lucide-react";
+import { Search, ShoppingCart, User, Menu, X, Gamepad2, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/app/context/CartContext";
+import { useWishlist } from "@/app/context/WishlistContext";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
   { label: "Games", href: "/games", isRoute: true },
   { label: "Categories", href: "#categories", isRoute: false },
   { label: "Deals", href: "/deals", isRoute: true },
-  { label: "Wishlist", href: "#wishlist", isRoute: false },
+  { label: "Wishlist", href: "/wishlist", isRoute: true },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { itemCount } = useCart();
+  const { itemCount: wishlistCount } = useWishlist();
 
   return (
     <header className="sticky top-0 z-50 frosted border-b border-border">
@@ -71,6 +73,20 @@ export function Header() {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-1">
             <ThemeToggle />
+            <Link href="/wishlist">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
+              >
+                <Heart className="size-[18px]" />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white shadow-[0_0_8px_rgba(255,46,147,0.4)]">
+                    {wishlistCount}
+                  </span>
+                )}
+              </Button>
+            </Link>
             <Button
               variant="ghost"
               size="icon"
@@ -139,6 +155,20 @@ export function Header() {
               )
             )}
             <div className="flex items-center gap-1 px-2 pt-3 mt-2 border-t border-border">
+              <Link href="/wishlist" onClick={() => setMobileMenuOpen(false)}>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
+                >
+                  <Heart className="size-[18px]" />
+                  {wishlistCount > 0 && (
+                    <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white">
+                      {wishlistCount}
+                    </span>
+                  )}
+                </Button>
+              </Link>
               <Button
                 variant="ghost"
                 size="icon"

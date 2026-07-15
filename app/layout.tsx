@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "./components/layout/ThemeProvider";
 import { CartProvider } from "./context/CartContext";
+import { WishlistProvider } from "./context/WishlistContext";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
@@ -45,8 +46,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
           <CartProvider>
-            {children}
-            <Toaster />
+            <WishlistProvider>
+              {children}
+              <Toaster />
+            </WishlistProvider>
           </CartProvider>
         </ThemeProvider>
       </body>
