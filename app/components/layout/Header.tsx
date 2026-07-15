@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Search, ShoppingCart, User, Menu, X, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useCart } from "@/app/context/CartContext";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
@@ -16,6 +17,7 @@ const navLinks = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { itemCount } = useCart();
 
   return (
     <header className="sticky top-0 z-50 frosted border-b border-border">
@@ -72,9 +74,11 @@ export function Header() {
               className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
             >
               <ShoppingCart className="size-[18px]" />
-              <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white shadow-[0_0_8px_rgba(255,46,147,0.4)]">
-                3
-              </span>
+              {itemCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white shadow-[0_0_8px_rgba(255,46,147,0.4)]">
+                  {itemCount}
+                </span>
+              )}
             </Button>
           </div>
 
@@ -127,9 +131,11 @@ export function Header() {
                 className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
               >
                 <ShoppingCart className="size-[18px]" />
-                <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white">
-                  3
-                </span>
+                {itemCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white">
+                    {itemCount}
+                  </span>
+                )}
               </Button>
             </div>
           </div>

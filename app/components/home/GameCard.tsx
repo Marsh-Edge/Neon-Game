@@ -1,7 +1,9 @@
 import { ShoppingCart, Star } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { Game } from "@/app/data/games";
+import { useCart } from "@/app/context/CartContext";
 import { cn } from "@/lib/utils";
 
 interface GameCardProps {
@@ -9,8 +11,17 @@ interface GameCardProps {
 }
 
 export function GameCard({ game }: GameCardProps) {
+  const { addItem, isInCart } = useCart();
   const hasDiscount = game.originalPrice && game.originalPrice > game.price;
   const isFree = game.isFree || game.price === 0;
+
+  const handleAddToCart = () => {
+    if (isInCart(game.id)) return;
+    addItem(game);
+    toast.success("This game has been added to your shopping cart", {
+      description: game.title,
+    });
+  };
 
   return (
     <div
@@ -119,7 +130,14 @@ export function GameCard({ game }: GameCardProps) {
           <Button
             size="icon"
             variant="ghost"
-            className="size-8 text-muted-foreground hover:text-neon-cyan hover:bg-neon-cyan/10 rounded-lg cursor-pointer transition-all duration-200"
+            onClick={handleAddToCart}
+            disabled={isInCart(game.id)}
+            className={cn(
+              "size-8 rounded-lg cursor-pointer transition-all duration-200",
+              isInCart(game.id)
+                ? "text-status-success hover:text-status-success"
+                : "text-muted-foreground hover:text-neon-cyan hover:bg-neon-cyan/10"
+            )}
           >
             <ShoppingCart className="size-4" />
           </Button>
