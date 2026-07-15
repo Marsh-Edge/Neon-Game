@@ -7,19 +7,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
+import { useLanguage } from "@/app/context/LanguageContext";
 import { ThemeToggle } from "./ThemeToggle";
-
-const navLinks = [
-  { label: "Games", href: "/games" },
-  { label: "Categories", href: "/categories" },
-  { label: "Deals", href: "/deals" },
-  { label: "Wishlist", href: "/wishlist" },
-];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { itemCount } = useCart();
   const { itemCount: wishlistCount } = useWishlist();
+  const { locale, setLocale, t } = useLanguage();
+
+  const navLinks = [
+    { label: t("nav.games"), href: "/games" },
+    { label: t("nav.categories"), href: "/categories" },
+    { label: t("nav.deals"), href: "/deals" },
+    { label: t("nav.wishlist"), href: "/wishlist" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 frosted border-b border-border">
@@ -36,10 +38,10 @@ export function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1 ml-6">
+          <nav className="hidden md:flex items-center gap-1 ms-6">
             {navLinks.map((link) => (
               <Link
-                key={link.label}
+                key={link.href}
                 href={link.href}
                 className="nav-link px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground rounded-lg"
               >
@@ -51,11 +53,11 @@ export function Header() {
           {/* Search Bar */}
           <div className="hidden sm:flex flex-1 max-w-md mx-4">
             <div className="relative w-full group">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground group-focus-within:text-neon-cyan transition-colors duration-200" />
+              <Search className="absolute start-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground group-focus-within:text-neon-cyan transition-colors duration-200" />
               <Input
                 type="search"
-                placeholder="Search games..."
-                className="pl-9 frosted-input rounded-xl text-sm text-foreground placeholder:text-muted-foreground h-9"
+                placeholder={t("nav.search")}
+                className="ps-9 frosted-input rounded-xl text-sm text-foreground placeholder:text-muted-foreground h-9"
               />
             </div>
           </div>
@@ -63,6 +65,15 @@ export function Header() {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-1">
             <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setLocale(locale === "en" ? "fa" : "en")}
+              className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl text-xs font-bold cursor-pointer"
+              title={locale === "en" ? "\u0641\u0627\u0631\u0633\u06CC" : "English"}
+            >
+              {locale === "en" ? "\u0641\u0627" : "EN"}
+            </Button>
             <Link href="/wishlist">
               <Button
                 variant="ghost"
@@ -71,7 +82,7 @@ export function Header() {
               >
                 <Heart className="size-[18px]" />
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white shadow-[0_0_8px_rgba(255,46,147,0.4)]">
+                  <span className="absolute -top-0.5 -end-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white shadow-[0_0_8px_rgba(255,46,147,0.4)]">
                     {wishlistCount}
                   </span>
                 )}
@@ -92,7 +103,7 @@ export function Header() {
               >
                 <ShoppingCart className="size-[18px]" />
                 {itemCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white shadow-[0_0_8px_rgba(255,46,147,0.4)]">
+                  <span className="absolute -top-0.5 -end-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white shadow-[0_0_8px_rgba(255,46,147,0.4)]">
                     {itemCount}
                   </span>
                 )}
@@ -103,6 +114,15 @@ export function Header() {
           {/* Mobile Menu Toggle */}
           <div className="flex items-center gap-1 md:hidden">
             <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setLocale(locale === "en" ? "fa" : "en")}
+              className="size-9 text-muted-foreground hover:text-foreground text-xs font-bold cursor-pointer"
+              title={locale === "en" ? "\u0641\u0627\u0631\u0633\u06CC" : "English"}
+            >
+              {locale === "en" ? "\u0641\u0627" : "EN"}
+            </Button>
             <Button
               variant="ghost"
               size="icon"
@@ -118,16 +138,16 @@ export function Header() {
         {mobileMenuOpen && (
           <div className="md:hidden frosted border border-border rounded-xl -mx-2 mb-3 py-4 space-y-1">
             <div className="sm:hidden relative mb-3">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+              <Search className="absolute start-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
               <Input
                 type="search"
-                placeholder="Search games..."
-                className="pl-9 frosted-input rounded-xl text-sm text-foreground placeholder:text-muted-foreground h-9"
+                placeholder={t("nav.search")}
+                className="ps-9 frosted-input rounded-xl text-sm text-foreground placeholder:text-muted-foreground h-9"
               />
             </div>
             {navLinks.map((link) => (
               <Link
-                key={link.label}
+                key={link.href}
                 href={link.href}
                 className="block px-3 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-muted transition-colors duration-200"
                 onClick={() => setMobileMenuOpen(false)}
@@ -144,7 +164,7 @@ export function Header() {
                 >
                   <Heart className="size-[18px]" />
                   {wishlistCount > 0 && (
-                    <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white">
+                    <span className="absolute -top-0.5 -end-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white">
                       {wishlistCount}
                     </span>
                   )}
@@ -165,7 +185,7 @@ export function Header() {
                 >
                   <ShoppingCart className="size-[18px]" />
                   {itemCount > 0 && (
-                    <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white">
+                    <span className="absolute -top-0.5 -end-0.5 flex size-4 items-center justify-center rounded-full bg-neon-magenta text-[9px] font-bold text-white">
                       {itemCount}
                     </span>
                   )}

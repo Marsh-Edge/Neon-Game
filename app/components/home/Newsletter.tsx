@@ -5,8 +5,10 @@ import { Mail, CheckCircle, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 export function Newsletter() {
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
@@ -31,10 +33,10 @@ export function Newsletter() {
               </div>
               <div>
                 <h3 className="font-[family-name:var(--font-display)] text-lg font-bold text-foreground">
-                  Stay in the Loop
+                  {t("newsletter.stay")}
                 </h3>
                 <p className="text-xs text-muted-foreground">
-                  Get deals before anyone else
+                  {t("newsletter.getDeals")}
                 </p>
               </div>
             </div>
@@ -43,7 +45,7 @@ export function Newsletter() {
               <div className="flex items-center gap-2 text-status-success">
                 <CheckCircle className="size-5" />
                 <span className="text-sm font-medium">
-                  You&apos;re subscribed! Check your inbox.
+                  {t("newsletter.subscribed")}
                 </span>
               </div>
             ) : (
@@ -52,21 +54,21 @@ export function Newsletter() {
                 className="flex w-full sm:max-w-md gap-2"
               >
                 <div className="relative flex-1">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                  <Mail className="absolute start-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                   <Input
                     type="email"
                     placeholder="your@email.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="pl-9 frosted-input rounded-xl text-sm text-foreground placeholder:text-muted-foreground h-9"
+                    className="ps-9 frosted-input rounded-xl text-sm text-foreground placeholder:text-muted-foreground h-9"
                   />
                 </div>
                 <Button
                   type="submit"
                   className="bg-neon-cyan text-black hover:bg-neon-cyan/80 font-semibold px-6 h-9 text-sm shrink-0 cursor-pointer rounded-xl"
                 >
-                  Subscribe
+                  {t("newsletter.subscribe")}
                 </Button>
               </form>
             )}

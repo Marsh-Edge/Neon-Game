@@ -7,10 +7,12 @@ import { GameGrid } from "../components/home/GameGrid";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { allGames, categories } from "../data/games";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const allFilter = { id: "all", name: "All Games", icon: "" };
 
 export default function GamesPage() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("all");
 
   const filteredGames = useMemo(() => {
@@ -32,10 +34,10 @@ export default function GamesPage() {
           <FadeIn>
             <div>
               <h1 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-bold text-foreground mb-2">
-                All Games
+                {t("games.title")}
               </h1>
               <p className="text-muted-foreground">
-                Browse our full catalog — {allGames.length} games available
+                {t("games.browse", { count: allGames.length })}
               </p>
             </div>
           </FadeIn>
@@ -52,7 +54,7 @@ export default function GamesPage() {
                     : "glass glass-border text-muted-foreground hover:text-foreground hover:border-neon-purple/30"
                 )}
               >
-                All Games
+                {t("games.allGames")}
               </button>
               {categories.map((cat) => (
                 <button
@@ -74,11 +76,11 @@ export default function GamesPage() {
           {/* Results Count */}
           <FadeIn delay={0.15}>
             <p className="text-sm text-muted-foreground">
-              Showing{" "}
+              {t("games.showing")}{" "}
               <span className="font-medium text-foreground">
                 {filteredGames.length}
               </span>{" "}
-              {filteredGames.length === 1 ? "game" : "games"}
+              {filteredGames.length === 1 ? t("games.game") : t("games.games")}
             </p>
           </FadeIn>
 

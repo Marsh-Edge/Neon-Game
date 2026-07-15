@@ -15,6 +15,7 @@ import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const platformIcons: Record<string, string> = {
   PC: "PC",
@@ -32,6 +33,7 @@ export default function GamePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
+  const { t } = useLanguage();
   const game = allGames.find((g) => g.id === id);
 
   if (!game) {
@@ -55,13 +57,13 @@ export default function GamePage({
   const handleAddToCart = () => {
     if (isInCart(game.id)) return;
     addItem(game);
-    toast.success("Added to cart", { description: game.title });
+    toast.success(t("game.addedToCart"), { description: game.title });
   };
 
   const handleToggleWishlist = () => {
     toggleItem(game);
     toast(
-      isWishlisted(game.id) ? "Removed from wishlist" : "Added to wishlist",
+      isWishlisted(game.id) ? t("game.removedFromWishlist") : t("game.addedToWishlist"),
       { description: game.title }
     );
   };
@@ -79,7 +81,7 @@ export default function GamePage({
                 href="/games"
                 className="hover:text-neon-cyan transition-colors duration-200"
               >
-                All Games
+                {t("games.title")}
               </Link>
               <span>/</span>
               <span className="text-foreground font-medium">{game.title}</span>
@@ -101,7 +103,7 @@ export default function GamePage({
                 </div>
 
                 {/* Badges */}
-                <div className="absolute top-4 left-4 flex gap-2">
+                <div className="absolute top-4 start-4 flex gap-2">
                   {hasDiscount && game.discount && (
                     <Badge className="bg-neon-magenta text-white border-0 text-xs font-bold px-2 py-1 shadow-[0_0_10px_rgba(255,46,147,0.3)]">
                       -{game.discount}%
@@ -109,17 +111,17 @@ export default function GamePage({
                   )}
                   {isFree && (
                     <Badge className="bg-status-success text-white border-0 text-xs font-bold px-2 py-1">
-                      FREE
+                      {t("badge.free")}
                     </Badge>
                   )}
                   {game.badge === "new" && (
                     <Badge className="bg-neon-cyan text-black border-0 text-xs font-bold px-2 py-1">
-                      NEW
+                      {t("badge.new")}
                     </Badge>
                   )}
                   {game.badge === "trending" && (
                     <Badge className="bg-neon-purple text-white border-0 text-xs font-bold px-2 py-1 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
-                      HOT
+                      {t("badge.hot")}
                     </Badge>
                   )}
                 </div>
@@ -134,7 +136,7 @@ export default function GamePage({
                   <div>
                     {isFree ? (
                       <span className="text-3xl font-bold text-status-success">
-                        Free
+                        {t("game.free")}
                       </span>
                     ) : (
                       <div className="flex items-baseline gap-3">
@@ -161,7 +163,7 @@ export default function GamePage({
                     )}
                   >
                     <ShoppingCart className="size-4" />
-                    {isInCart(game.id) ? "In Cart" : "Add to Cart"}
+                    {isInCart(game.id) ? t("game.inCart") : t("game.addToCart")}
                   </Button>
 
                   <Button
@@ -179,8 +181,8 @@ export default function GamePage({
                       fill={isWishlisted(game.id) ? "currentColor" : "none"}
                     />
                     {isWishlisted(game.id)
-                      ? "In Wishlist"
-                      : "Add to Wishlist"}
+                      ? t("game.inWishlist")
+                      : t("game.addToWishlist")}
                   </Button>
                 </div>
 
@@ -188,15 +190,15 @@ export default function GamePage({
                 <div className="glass glass-border rounded-2xl p-6 space-y-4">
                   <div className="flex items-center gap-3 text-sm">
                     <Building2 className="size-4 text-muted-foreground shrink-0" />
-                    <span className="text-muted-foreground">Developer</span>
-                    <span className="ml-auto font-medium text-foreground">
+                    <span className="text-muted-foreground">{t("game.developer")}</span>
+                    <span className="ms-auto font-medium text-foreground">
                       {game.developer}
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
                     <Calendar className="size-4 text-muted-foreground shrink-0" />
-                    <span className="text-muted-foreground">Released</span>
-                    <span className="ml-auto font-medium text-foreground">
+                    <span className="text-muted-foreground">{t("game.released")}</span>
+                    <span className="ms-auto font-medium text-foreground">
                       {new Date(game.releaseDate).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "short",
@@ -206,15 +208,15 @@ export default function GamePage({
                   </div>
                   <div className="flex items-center gap-3 text-sm">
                     <Star className="size-4 text-status-warning shrink-0" />
-                    <span className="text-muted-foreground">Rating</span>
-                    <span className="ml-auto font-medium text-foreground">
+                    <span className="text-muted-foreground">{t("game.rating")}</span>
+                    <span className="ms-auto font-medium text-foreground">
                       {game.rating} / 5
                     </span>
                   </div>
                   <div className="flex items-start gap-3 text-sm">
                     <Monitor className="size-4 text-muted-foreground shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">Platforms</span>
-                    <div className="ml-auto flex flex-wrap gap-1.5 justify-end">
+                    <span className="text-muted-foreground">{t("game.platforms")}</span>
+                    <div className="ms-auto flex flex-wrap gap-1.5 justify-end">
                       {game.platform.map((p) => (
                         <span
                           key={p}
@@ -254,7 +256,7 @@ export default function GamePage({
           <FadeIn delay={0.2}>
             <div className="space-y-3">
               <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-foreground">
-                About this game
+                {t("game.about")}
               </h2>
               <p className="text-muted-foreground leading-relaxed">
                 {game.description}
@@ -266,7 +268,7 @@ export default function GamePage({
           <FadeIn delay={0.25}>
             <div className="space-y-3">
               <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-foreground">
-                Screenshots
+                {t("game.screenshots")}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {game.screenshots.map((_, index) => (
@@ -284,7 +286,7 @@ export default function GamePage({
           {/* Related Games */}
           {relatedGames.length > 0 && (
             <FadeIn delay={0.3}>
-              <GameRow title="Related Games" games={relatedGames} />
+              <GameRow title={t("game.related")} games={relatedGames} />
             </FadeIn>
           )}
         </div>

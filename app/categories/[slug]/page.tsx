@@ -18,6 +18,7 @@ import { Footer } from "@/app/components/layout/Footer";
 import { GameGrid } from "@/app/components/home/GameGrid";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { allGames, categories } from "@/app/data/games";
+import { useLanguage } from "@/app/context/LanguageContext";
 import type { LucideIcon } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {
@@ -37,6 +38,7 @@ export default function CategoryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = use(params);
+  const { t } = useLanguage();
 
   const category = categories.find(
     (c) => c.id.toLowerCase() === slug.toLowerCase()
@@ -62,7 +64,7 @@ export default function CategoryPage({
           <FadeIn>
             <nav className="flex items-center gap-2 text-sm text-muted-foreground">
               <Link href="/games" className="hover:text-neon-cyan transition-colors duration-200">
-                All Games
+                {t("games.title")}
               </Link>
               <span>/</span>
               <span className="text-foreground font-medium">{category.name}</span>
@@ -80,7 +82,7 @@ export default function CategoryPage({
                   {category.name}
                 </h1>
                 <p className="text-muted-foreground">
-                  {filteredGames.length} {filteredGames.length === 1 ? "game" : "games"} available
+                  {filteredGames.length} {filteredGames.length === 1 ? t("games.game") : t("games.games")} {t("categories.available")}
                 </p>
               </div>
             </div>

@@ -3,12 +3,14 @@
 import { Eye, Clock } from "lucide-react";
 import { socialProof } from "@/app/data/games";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 export function SocialProof() {
+  const { t } = useLanguage();
   return (
     <section className="w-full">
       <FadeIn variant="fadeIn">
-        <div className="glass rounded-xl overflow-hidden border border-border border-l-2 border-l-neon-cyan/40">
+        <div className="glass rounded-xl overflow-hidden border border-border border-s-2 border-s-neon-cyan/40">
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 px-6 py-4">
             {/* Live viewers */}
             <div className="flex items-center gap-2.5 shrink-0">
@@ -18,8 +20,7 @@ export function SocialProof() {
               </span>
               <Eye className="size-4 text-status-success" />
               <span className="text-sm font-medium text-foreground/80">
-                {socialProof.activeViewers.toLocaleString()} people are viewing
-                this right now
+                {socialProof.activeViewers.toLocaleString()} {t("social.viewing")}
               </span>
             </div>
 
@@ -37,7 +38,7 @@ export function SocialProof() {
                         <span className="font-medium text-foreground/70">
                           {purchase.user}
                         </span>{" "}
-                        purchased{" "}
+                        {t("social.purchased")}
                         <span className="font-medium text-neon-cyan/80">
                           {purchase.game}
                         </span>{" "}

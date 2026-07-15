@@ -6,6 +6,7 @@ import { useDragScroll } from "@/hooks/useDragScroll";
 import type { Game } from "@/app/data/games";
 import { cn } from "@/lib/utils";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/FadeIn";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 interface GameRowProps {
   title: string;
@@ -14,6 +15,7 @@ interface GameRowProps {
 }
 
 export function GameRow({ title, games, seeAllHref = "#" }: GameRowProps) {
+  const { t } = useLanguage();
   const { ref, isDragging } = useDragScroll();
 
   return (
@@ -27,7 +29,7 @@ export function GameRow({ title, games, seeAllHref = "#" }: GameRowProps) {
             href={seeAllHref}
             className="flex items-center gap-1 text-sm font-medium text-neon-cyan/70 hover:text-neon-cyan transition-colors duration-200"
           >
-            See all
+            {t("home.seeAll")}
             <ChevronRight className="size-4" />
           </a>
         </div>

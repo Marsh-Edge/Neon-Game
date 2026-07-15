@@ -10,8 +10,10 @@ import { useWishlist } from "@/app/context/WishlistContext";
 import { useCart } from "@/app/context/CartContext";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 export default function WishlistPage() {
+  const { t } = useLanguage();
   const { items, itemCount } = useWishlist();
   const { addItem, isInCart } = useCart();
 
@@ -24,7 +26,7 @@ export default function WishlistPage() {
       }
     }
     if (added > 0) {
-      toast.success(`Added ${added} ${added === 1 ? "game" : "games"} to cart`);
+      toast.success(t("wishlist.added", { count: added, n: added }));
     }
   };
 
@@ -42,10 +44,10 @@ export default function WishlistPage() {
               </div>
               <div className="flex-1">
                 <h1 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-bold text-foreground mb-1">
-                  My Wishlist
+                  {t("wishlist.title")}
                 </h1>
                 <p className="text-muted-foreground">
-                  {itemCount} {itemCount === 1 ? "game" : "games"} saved
+                  {t("wishlist.saved", { count: itemCount, n: itemCount })}
                 </p>
               </div>
               {itemCount > 0 && (
@@ -54,7 +56,7 @@ export default function WishlistPage() {
                   className="bg-neon-cyan text-black hover:bg-neon-cyan/80 font-semibold px-6 h-9 text-sm cursor-pointer rounded-xl gap-2 shrink-0"
                 >
                   <ShoppingCart className="size-4" />
-                  Add All to Cart
+                  {t("wishlist.addAll")}
                 </Button>
               )}
             </div>
@@ -72,14 +74,14 @@ export default function WishlistPage() {
                   <Heart className="size-8 text-muted-foreground/40" />
                 </div>
                 <h2 className="font-[family-name:var(--font-display)] text-xl font-bold text-foreground mb-2">
-                  Your wishlist is empty
+                  {t("wishlist.empty")}
                 </h2>
                 <p className="text-sm text-muted-foreground mb-6 max-w-sm">
-                  Browse our catalog and save games you&apos;re interested in by clicking the heart icon.
+                  {t("wishlist.emptyDesc")}
                 </p>
                 <Link href="/games">
                   <Button className="bg-neon-cyan text-black hover:bg-neon-cyan/80 font-semibold px-6 h-9 text-sm cursor-pointer rounded-xl">
-                    Browse Games
+                    {t("cart.browseGames")}
                   </Button>
                 </Link>
               </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { GameCard } from "./GameCard";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/app/context/LanguageContext";
 import type { Game } from "@/app/data/games";
 
 interface GameGridProps {
@@ -11,6 +12,7 @@ interface GameGridProps {
 }
 
 function GameGridInner({ title, games }: GameGridProps) {
+  const { t } = useLanguage();
   const [visibleCount, setVisibleCount] = useState(6);
 
   const visibleGames = games.slice(0, visibleCount);
@@ -37,7 +39,7 @@ function GameGridInner({ title, games }: GameGridProps) {
             className="glass border border-border text-muted-foreground hover:text-foreground hover:border-neon-cyan/30 hover:bg-muted px-8 cursor-pointer rounded-xl"
             onClick={() => setVisibleCount((prev) => prev + 6)}
           >
-            Load More
+            {t("home.loadMore")}
           </Button>
         </div>
       )}

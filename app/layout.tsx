@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono, Vazirmatn } from "next/font/google";
 import { ThemeProvider } from "./components/layout/ThemeProvider";
 import { CartProvider } from "./context/CartContext";
 import { WishlistProvider } from "./context/WishlistContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
@@ -27,6 +28,12 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const vazirmatn = Vazirmatn({
+  variable: "--font-persian",
+  subsets: ["arabic"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "NeonGame - Premium Game Store",
   description: "Discover and purchase the latest games at unbeatable prices.",
@@ -40,17 +47,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      dir="ltr"
       suppressHydrationWarning
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${vazirmatn.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
-          <CartProvider>
-            <WishlistProvider>
-              {children}
-              <Toaster />
-            </WishlistProvider>
-          </CartProvider>
+          <LanguageProvider>
+            <CartProvider>
+              <WishlistProvider>
+                {children}
+                <Toaster />
+              </WishlistProvider>
+            </CartProvider>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

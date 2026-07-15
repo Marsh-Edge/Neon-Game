@@ -125,7 +125,7 @@ export function HeroCarousel() {
           variant="outline"
           size="icon"
           onClick={scrollPrev}
-          className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-border text-foreground/70 hover:text-foreground hover:border-border hover:bg-muted cursor-pointer transition-all duration-200"
+          className="absolute start-3 sm:start-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-border text-foreground/70 hover:text-foreground hover:border-border hover:bg-muted cursor-pointer transition-all duration-200"
         >
           <ChevronLeft className="size-5" />
         </Button>
@@ -133,7 +133,7 @@ export function HeroCarousel() {
           variant="outline"
           size="icon"
           onClick={scrollNext}
-          className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-border text-foreground/70 hover:text-foreground hover:border-border hover:bg-muted cursor-pointer transition-all duration-200"
+          className="absolute end-3 sm:end-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-border text-foreground/70 hover:text-foreground hover:border-border hover:bg-muted cursor-pointer transition-all duration-200"
         >
           <ChevronRight className="size-5" />
         </Button>

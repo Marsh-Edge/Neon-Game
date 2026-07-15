@@ -16,6 +16,7 @@ import { Footer } from "../components/layout/Footer";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/FadeIn";
 import { categories, allGames } from "../data/games";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/app/context/LanguageContext";
 import type { LucideIcon } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {
@@ -30,6 +31,8 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export default function CategoriesPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -40,10 +43,10 @@ export default function CategoriesPage() {
           <FadeIn>
             <div>
               <h1 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-bold text-foreground mb-2">
-                Categories
+                {t("categories.title")}
               </h1>
               <p className="text-muted-foreground">
-                Browse {categories.length} categories across {allGames.length} games
+                {t("categories.browse", { catCount: categories.length, gameCount: allGames.length })}
               </p>
             </div>
           </FadeIn>
@@ -75,7 +78,7 @@ export default function CategoriesPage() {
                         {cat.name}
                       </h2>
                       <p className="text-sm text-muted-foreground">
-                        {gameCount} {gameCount === 1 ? "game" : "games"}
+                        {gameCount} {gameCount === 1 ? t("games.game") : t("games.games")}
                       </p>
                     </div>
                   </Link>

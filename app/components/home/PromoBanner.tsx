@@ -4,8 +4,10 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Flame, Timer, ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 export function PromoBanner() {
+  const { t } = useLanguage();
   return (
     <section className="w-full">
       <FadeIn>
@@ -18,33 +20,32 @@ export function PromoBanner() {
           </div>
 
           <div className="relative flex flex-col sm:flex-row items-center justify-between gap-6 px-8 py-10 sm:px-12">
-            <div className="text-center sm:text-left">
+            <div className="text-center sm:text-start">
               <div className="flex items-center justify-center sm:justify-start gap-2 mb-3">
                 <Flame className="size-4 text-neon-magenta animate-pulse-glow" />
                 <span className="text-[11px] font-semibold tracking-widest uppercase text-neon-magenta">
-                  Limited Time
+                  {t("promo.limitedTime")}
                 </span>
               </div>
               <h2 className="font-[family-name:var(--font-display)] text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2">
-                Summer Sale
+                {t("promo.summerSale")}
               </h2>
               <p className="text-base text-muted-foreground">
-                Up to <span className="font-bold text-neon-cyan">70% off</span> on
-                thousands of games
+                {t("promo.upTo")} <span className="font-bold text-neon-cyan">70% {t("promo.off")}</span> {t("promo.onThousands")}
               </p>
             </div>
 
             <div className="flex flex-col items-center gap-3">
               <div className="flex items-center gap-2 text-sm text-muted-foreground/80">
                 <Timer className="size-4" />
-                <span>Ends in 3 days</span>
+                <span>{t("promo.endsIn")}</span>
               </div>
               <Link href="/deals">
                 <Button
                   size="lg"
                   className="bg-neon-magenta text-white hover:bg-neon-magenta/80 neon-glow-magenta font-semibold px-8 h-11 text-sm cursor-pointer rounded-xl gap-2"
                 >
-                  Shop the Sale
+                  {t("promo.shopTheSale")}
                   <ArrowRight className="size-4" />
                 </Button>
               </Link>

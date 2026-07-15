@@ -7,8 +7,10 @@ import { Footer } from "../components/layout/Footer";
 import { GameGrid } from "../components/home/GameGrid";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { allGames } from "../data/games";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 export default function DealsPage() {
+  const { t } = useLanguage();
   const dealGames = useMemo(
     () =>
       allGames.filter(
@@ -41,13 +43,13 @@ export default function DealsPage() {
               </div>
               <div>
                 <h1 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-bold text-foreground mb-1">
-                  Hot Deals
+                  {t("deals.title")}
                 </h1>
                 <p className="text-muted-foreground">
-                  {dealGames.length} {dealGames.length === 1 ? "game" : "games"} on sale
+                  {t("deals.onSale", { count: dealGames.length, n: dealGames.length })}
                   {maxSavings > 0 && (
                     <>
-                      {" "}&mdash; save up to{" "}
+                      {" "}&mdash; {t("deals.saveUpTo")}{" "}
                       <span className="font-bold text-neon-cyan">
                         ${maxSavings.toFixed(0)}
                       </span>

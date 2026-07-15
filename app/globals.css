@@ -313,17 +313,17 @@
     content: "";
     position: absolute;
     bottom: 2px;
-    left: 50%;
+    inset-inline-start: 50%;
     width: 0;
     height: 2px;
     background: var(--neon-cyan);
     border-radius: 1px;
-    transition: width 0.25s ease, left 0.25s ease;
+    transition: width 0.25s ease, inset-inline-start 0.25s ease;
     box-shadow: 0 0 6px rgba(0, 229, 255, 0.4);
   }
   .nav-link:hover::after {
     width: 60%;
-    left: 20%;
+    inset-inline-start: 20%;
   }
 
   /* Frosted input */

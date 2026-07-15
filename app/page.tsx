@@ -9,6 +9,7 @@ import { PromoBanner } from "./components/home/PromoBanner";
 import { SocialProof } from "./components/home/SocialProof";
 import { Newsletter } from "./components/home/Newsletter";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { useLanguage } from "@/app/context/LanguageContext";
 import {
   bestSellers,
   recommended,
@@ -17,6 +18,8 @@ import {
 } from "./data/games";
 
 export default function Home() {
+  const { t } = useLanguage();
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -32,14 +35,14 @@ export default function Home() {
           <CategoryBar />
 
           {/* Best Sellers */}
-          <GameRow title="Best Sellers This Week" games={bestSellers} />
+          <GameRow title={t("home.bestSellers")} games={bestSellers} />
 
           {/* Mid-page Promo */}
           <PromoBanner />
 
           {/* Recommended */}
           <GameRow
-            title="Recommended for You"
+            title={t("home.recommended")}
             games={recommended}
           />
 
@@ -47,11 +50,11 @@ export default function Home() {
           <SocialProof />
 
           {/* New Releases */}
-          <GameRow title="New Releases" games={newReleases} />
+          <GameRow title={t("home.newReleases")} games={newReleases} />
 
           {/* Free Games */}
           <GameRow
-            title="Free or Nearly Free"
+            title={t("home.freeGames")}
             games={freeGames}
             seeAllHref="#free"
           />

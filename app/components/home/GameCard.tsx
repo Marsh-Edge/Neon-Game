@@ -9,12 +9,14 @@ import type { Game } from "@/app/data/games";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 interface GameCardProps {
   game: Game;
 }
 
 export function GameCard({ game }: GameCardProps) {
+  const { t } = useLanguage();
   const { addItem, isInCart } = useCart();
   const { toggleItem, isWishlisted } = useWishlist();
   const hasDiscount = game.originalPrice && game.originalPrice > game.price;
@@ -23,7 +25,7 @@ export function GameCard({ game }: GameCardProps) {
   const handleAddToCart = () => {
     if (isInCart(game.id)) return;
     addItem(game);
-    toast.success("This game has been added to your shopping cart", {
+    toast.success(t("game.addedToCart"), {
       description: game.title,
     });
   };
@@ -50,7 +52,7 @@ export function GameCard({ game }: GameCardProps) {
 
           {/* Discount Badge */}
           {hasDiscount && game.discount && (
-            <div className="absolute top-2 left-2">
+            <div className="absolute top-2 start-2">
               <Badge className="bg-neon-magenta text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5 shadow-[0_0_10px_rgba(255,46,147,0.3)]">
                 -{game.discount}%
               </Badge>
@@ -59,26 +61,26 @@ export function GameCard({ game }: GameCardProps) {
 
           {/* Free Badge */}
           {isFree && (
-            <div className="absolute top-2 left-2">
+            <div className="absolute top-2 start-2">
               <Badge className="bg-status-success text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5">
-                FREE
+                {t("badge.free")}
               </Badge>
             </div>
           )}
 
           {/* Badge */}
           {game.badge === "new" && !isFree && (
-            <div className="absolute top-2 right-2">
+            <div className="absolute top-2 end-2">
               <Badge className="bg-neon-cyan text-black border-0 text-[10px] font-bold px-1.5 py-0 h-5">
-                NEW
+                {t("badge.new")}
               </Badge>
             </div>
           )}
 
           {game.badge === "trending" && (
-            <div className="absolute top-2 right-2">
+            <div className="absolute top-2 end-2">
               <Badge className="bg-neon-purple text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
-                HOT
+                {t("badge.hot")}
               </Badge>
             </div>
           )}
@@ -121,7 +123,7 @@ export function GameCard({ game }: GameCardProps) {
           <div className="flex items-baseline gap-2">
             {isFree ? (
               <span className="text-sm font-bold text-status-success">
-                Free
+                {t("game.free")}
               </span>
             ) : (
               <>

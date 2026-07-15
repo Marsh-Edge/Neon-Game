@@ -14,6 +14,7 @@ import {
 import { categories } from "@/app/data/games";
 import { cn } from "@/lib/utils";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/FadeIn";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const iconMap: Record<string, React.ElementType> = {
   Swords,
@@ -27,11 +28,13 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export function CategoryBar() {
+  const { t } = useLanguage();
+
   return (
     <section id="categories" className="w-full">
       <FadeIn>
         <h2 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl font-bold text-foreground mb-5">
-          Browse by Category
+          {t("home.browseByCategory")}
         </h2>
       </FadeIn>
       <StaggerContainer className="grid grid-cols-4 sm:grid-cols-8 gap-3">
