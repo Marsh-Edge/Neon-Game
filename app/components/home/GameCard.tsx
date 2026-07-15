@@ -1,4 +1,5 @@
 import { ShoppingCart, Star, Heart } from "lucide-react";
+import Link from "next/link";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -34,60 +35,64 @@ export function GameCard({ game }: GameCardProps) {
       )}
     >
       {/* Image Placeholder */}
+      <Link href={`/games/${game.id}`} className="block">
         <div className="relative aspect-video rounded-t-xl bg-gradient-to-br dark:from-white/[0.07] dark:to-white/[0.02] from-black/[0.05] to-black/[0.02] overflow-hidden">
-        <div className="absolute inset-0 animate-shimmer" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-12 h-12 rounded-lg dark:bg-white/[0.07] dark:border-white/[0.08] bg-black/[0.05] border-black/[0.08] border flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-            <span className="font-[family-name:var(--font-display)] text-lg text-muted-foreground/40">
-              {game.title.charAt(0)}
-            </span>
+          <div className="absolute inset-0 animate-shimmer" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-lg dark:bg-white/[0.07] dark:border-white/[0.08] bg-black/[0.05] border-black/[0.08] border flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+              <span className="font-[family-name:var(--font-display)] text-lg text-muted-foreground/40">
+                {game.title.charAt(0)}
+              </span>
+            </div>
           </div>
+
+          {/* Discount Badge */}
+          {hasDiscount && game.discount && (
+            <div className="absolute top-2 left-2">
+              <Badge className="bg-neon-magenta text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5 shadow-[0_0_10px_rgba(255,46,147,0.3)]">
+                -{game.discount}%
+              </Badge>
+            </div>
+          )}
+
+          {/* Free Badge */}
+          {isFree && (
+            <div className="absolute top-2 left-2">
+              <Badge className="bg-status-success text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5">
+                FREE
+              </Badge>
+            </div>
+          )}
+
+          {/* Badge */}
+          {game.badge === "new" && !isFree && (
+            <div className="absolute top-2 right-2">
+              <Badge className="bg-neon-cyan text-black border-0 text-[10px] font-bold px-1.5 py-0 h-5">
+                NEW
+              </Badge>
+            </div>
+          )}
+
+          {game.badge === "trending" && (
+            <div className="absolute top-2 right-2">
+              <Badge className="bg-neon-purple text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
+                HOT
+              </Badge>
+            </div>
+          )}
+
+          {/* Hover overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
-
-        {/* Discount Badge */}
-        {hasDiscount && game.discount && (
-          <div className="absolute top-2 left-2">
-            <Badge className="bg-neon-magenta text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5 shadow-[0_0_10px_rgba(255,46,147,0.3)]">
-              -{game.discount}%
-            </Badge>
-          </div>
-        )}
-
-        {/* Free Badge */}
-        {isFree && (
-          <div className="absolute top-2 left-2">
-            <Badge className="bg-status-success text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5">
-              FREE
-            </Badge>
-          </div>
-        )}
-
-        {/* Badge */}
-        {game.badge === "new" && !isFree && (
-          <div className="absolute top-2 right-2">
-            <Badge className="bg-neon-cyan text-black border-0 text-[10px] font-bold px-1.5 py-0 h-5">
-              NEW
-            </Badge>
-          </div>
-        )}
-
-        {game.badge === "trending" && (
-          <div className="absolute top-2 right-2">
-            <Badge className="bg-neon-purple text-white border-0 text-[10px] font-bold px-1.5 py-0 h-5 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
-              HOT
-            </Badge>
-          </div>
-        )}
-
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
+      </Link>
 
       {/* Content */}
       <div className="flex flex-col flex-1 p-3.5 gap-2">
-        <h3 className="font-medium text-sm text-foreground/90 line-clamp-1 group-hover:text-neon-cyan transition-colors duration-200">
-          {game.title}
-        </h3>
+        <Link href={`/games/${game.id}`}>
+          <h3 className="font-medium text-sm text-foreground/90 line-clamp-1 group-hover:text-neon-cyan transition-colors duration-200">
+            {game.title}
+          </h3>
+        </Link>
 
         {/* Genres */}
         <div className="flex gap-1.5 flex-wrap">
