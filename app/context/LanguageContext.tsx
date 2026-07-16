@@ -19,9 +19,6 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
 function getInitialLocale(): Locale {
-  if (typeof window === "undefined") return "en";
-  const saved = localStorage.getItem("neon-locale");
-  if (saved === "en" || saved === "fa") return saved;
   return "en";
 }
 
@@ -29,8 +26,17 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(getInitialLocale);
 
   useEffect(() => {
+    const saved = localStorage.getItem("neon-locale");
+    if ((saved === "fa" || saved === "en") && saved !== locale) {
+      setLocaleState(saved);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     document.documentElement.lang = locale;
     document.documentElement.dir = locale === "fa" ? "rtl" : "ltr";
+    document.title = locale === "fa" ? "نئون‌گیم — فروشگاه تخصصی بازی" : "NeonGame - Premium Game Store";
   }, [locale]);
 
   const setLocale = useCallback((newLocale: Locale) => {

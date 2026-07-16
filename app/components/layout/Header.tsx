@@ -15,6 +15,7 @@ export function Header() {
   const { itemCount } = useCart();
   const { itemCount: wishlistCount } = useWishlist();
   const { locale, setLocale, t } = useLanguage();
+  const siteName = t("site.name");
 
   const navLinks = [
     { label: t("nav.games"), href: "/games" },
@@ -33,7 +34,7 @@ export function Header() {
               <Gamepad2 className="size-5 text-neon-cyan" />
             </div>
             <span className="font-[family-name:var(--font-display)] text-lg font-bold tracking-tight text-foreground">
-              NEON<span className="text-neon-cyan">GAME</span>
+              {locale === "fa" ? siteName : <><span className="text-foreground">NEON</span><span className="text-neon-cyan">GAME</span></>}
             </span>
           </Link>
 

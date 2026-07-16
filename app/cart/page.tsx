@@ -10,9 +10,10 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import { useLanguage } from "@/app/context/LanguageContext";
+import { formatPrice } from "@/app/lib/formatPrice";
 
 export default function CartPage() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const { items, itemCount, total, removeItem, clearCart } = useCart();
 
   const handleRemove = (gameId: string, title: string) => {
@@ -101,11 +102,11 @@ export default function CartPage() {
                         <div className="flex items-center justify-between mt-2">
                           <div className="flex items-baseline gap-2">
                             <span className="text-sm font-bold text-neon-cyan">
-                              ${game.price.toFixed(2)}
+                              {formatPrice(locale, game.price)}
                             </span>
                             {hasDiscount && (
                               <span className="text-xs text-muted-foreground/60 line-through">
-                                ${game.originalPrice!.toFixed(2)}
+                                {formatPrice(locale, game.originalPrice!)}
                               </span>
                             )}
                           </div>
@@ -135,24 +136,23 @@ export default function CartPage() {
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">{t("cart.subtotal", { count: itemCount })}</span>
-                      <span className="text-foreground font-medium">${total.toFixed(2)}</span>
+                      <span className="text-foreground font-medium">{formatPrice(locale, total)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">{t("cart.discount")}</span>
                       <span className="text-status-success font-medium">
-                        -${items
+                        -{formatPrice(locale, items
                           .reduce(
                             (sum, g) => sum + ((g.originalPrice ?? g.price) - g.price),
                             0
-                          )
-                          .toFixed(2)}
+                          ))}
                       </span>
                     </div>
                     <Separator className="bg-border" />
                     <div className="flex justify-between">
                       <span className="text-foreground font-bold">{t("cart.total")}</span>
                       <span className="text-xl font-bold text-neon-cyan">
-                        ${total.toFixed(2)}
+                        {formatPrice(locale, total)}
                       </span>
                     </div>
                   </div>

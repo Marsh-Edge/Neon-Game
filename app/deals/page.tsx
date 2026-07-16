@@ -8,9 +8,10 @@ import { GameGrid } from "../components/home/GameGrid";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { allGames } from "../data/games";
 import { useLanguage } from "@/app/context/LanguageContext";
+import { formatPrice } from "@/app/lib/formatPrice";
 
 export default function DealsPage() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const dealGames = useMemo(
     () =>
       allGames.filter(
@@ -51,7 +52,7 @@ export default function DealsPage() {
                     <>
                       {" "}&mdash; {t("deals.saveUpTo")}{" "}
                       <span className="font-bold text-neon-cyan">
-                        ${maxSavings.toFixed(0)}
+                        {formatPrice(locale, maxSavings)}
                       </span>
                     </>
                   )}

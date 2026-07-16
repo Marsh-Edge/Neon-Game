@@ -12,11 +12,12 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { heroSlides } from "@/app/data/games";
 import { cn } from "@/lib/utils";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 export function HeroCarousel() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const { locale, t } = useLanguage();
 
   const scrollPrev = useCallback(() => {
     api?.scrollPrev();
@@ -54,9 +55,10 @@ export function HeroCarousel() {
     return () => clearInterval(interval);
   }, [api]);
 
+  const isRtl = locale === "fa";
+
   return (
-    <FadeIn variant="fadeIn" duration={0.7}>
-      <section className="relative w-full">
+    <section className="relative w-full">
         <Carousel
           setApi={setApi}
           opts={{ loop: true, align: "start" }}
@@ -89,13 +91,13 @@ export function HeroCarousel() {
                   <div className="absolute inset-0 flex flex-col justify-center px-8 sm:px-12 lg:px-20">
                     <div className="max-w-xl">
                       <span className="inline-block px-3 py-1 mb-4 text-[11px] font-semibold tracking-wider uppercase rounded-full glass glass-border text-foreground/90">
-                        {slide.discount}
+                        {t(slide.discountKey)}
                       </span>
                       <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight">
                         {slide.title}
                       </h2>
                       <p className="text-base sm:text-lg text-white/60 mb-6 font-light">
-                        {slide.subtitle}
+                        {t(slide.subtitleKey)}
                       </p>
                       <Link href={slide.href}>
                         <Button
@@ -109,7 +111,7 @@ export function HeroCarousel() {
                               : "bg-neon-purple text-white hover:bg-neon-purple/80 neon-glow-purple"
                           )}
                         >
-                          {slide.ctaText}
+                          {t(slide.ctaKey)}
                         </Button>
                       </Link>
                     </div>
@@ -120,14 +122,14 @@ export function HeroCarousel() {
           </CarouselContent>
         </Carousel>
 
-        {/* Frosted Navigation Arrows */}
+        {/* Frosted Navigation Arrows — icons swap in RTL */}
         <Button
           variant="outline"
           size="icon"
           onClick={scrollPrev}
           className="absolute start-3 sm:start-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-border text-foreground/70 hover:text-foreground hover:border-border hover:bg-muted cursor-pointer transition-all duration-200"
         >
-          <ChevronLeft className="size-5" />
+          {isRtl ? <ChevronRight className="size-5" /> : <ChevronLeft className="size-5" />}
         </Button>
         <Button
           variant="outline"
@@ -135,7 +137,7 @@ export function HeroCarousel() {
           onClick={scrollNext}
           className="absolute end-3 sm:end-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-border text-foreground/70 hover:text-foreground hover:border-border hover:bg-muted cursor-pointer transition-all duration-200"
         >
-          <ChevronRight className="size-5" />
+          {isRtl ? <ChevronLeft className="size-5" /> : <ChevronRight className="size-5" />}
         </Button>
 
         {/* Dots */}
@@ -154,6 +156,5 @@ export function HeroCarousel() {
           ))}
         </div>
       </section>
-    </FadeIn>
-  );
+    );
 }

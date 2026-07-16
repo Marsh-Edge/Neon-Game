@@ -1,4 +1,8 @@
 const en = {
+  // Site
+  "site.name": "NEONGAME",
+  "site.title": "NeonGame - Premium Game Store",
+
   // Nav
   "nav.games": "Games",
   "nav.categories": "Categories",
@@ -20,6 +24,14 @@ const en = {
   "hero.preorderNow": "Pre-order Now",
   "hero.playFree": "Play Free",
   "hero.getItNow": "Get It Now",
+  "hero.slide1.subtitle": "The ultimate open-world RPG experience",
+  "hero.slide1.discount": "40% OFF",
+  "hero.slide2.subtitle": "Tactical multiplayer shooter",
+  "hero.slide2.discount": "EARLY ACCESS",
+  "hero.slide3.subtitle": "Explore the vast universe",
+  "hero.slide3.discount": "FREE TO PLAY",
+  "hero.slide4.subtitle": "High-speed cyberpunk racing",
+  "hero.slide4.discount": "25% OFF",
 
   // Promo
   "promo.limitedTime": "Limited Time",
@@ -42,7 +54,7 @@ const en = {
 
   // Games page
   "games.title": "All Games",
-  "games.browse": "Browse our full catalog \u2014 {count} games available",
+  "games.browse": "Browse our full catalog — {count} games available",
   "games.allGames": "All Games",
   "games.showing": "Showing",
   "games.game": "game",
@@ -116,9 +128,14 @@ const en = {
   "footer.legal.terms": "Terms of Service",
   "footer.legal.privacy": "Privacy Policy",
   "footer.legal.cookies": "Cookie Policy",
+  "footer.column.store": "Store",
+  "footer.column.support": "Support",
+  "footer.column.company": "Company",
+  "footer.column.legal": "Legal",
   "footer.tagline": "Your premium destination for the latest games at the best prices.",
   "footer.createdBy": "Created by",
   "footer.rights": "2026 NeonGame. All rights reserved.",
+  "footer.payment": "Payment Methods",
 
   // Badges
   "badge.free": "FREE",

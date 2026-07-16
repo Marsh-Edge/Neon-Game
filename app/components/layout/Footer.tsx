@@ -14,10 +14,10 @@ const socialLinks = [
 ];
 
 const paymentMethods = [
-  "Visa",
-  "Mastercard",
-  "PayPal",
-  "Stripe",
+  "زرین‌پال",
+  "آی‌دی‌پی",
+  "به‌پرداخت ملت",
+  "پرداخت آنلاین",
 ];
 
 export function Footer() {

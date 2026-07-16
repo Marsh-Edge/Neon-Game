@@ -16,6 +16,7 @@ import { useWishlist } from "@/app/context/WishlistContext";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/app/context/LanguageContext";
+import { formatPrice, formatDate } from "@/app/lib/formatPrice";
 
 const platformIcons: Record<string, string> = {
   PC: "PC",
@@ -33,7 +34,7 @@ export default function GamePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const game = allGames.find((g) => g.id === id);
 
   if (!game) {
@@ -141,11 +142,11 @@ export default function GamePage({
                     ) : (
                       <div className="flex items-baseline gap-3">
                         <span className="text-3xl font-bold text-neon-cyan">
-                          ${game.price.toFixed(2)}
+                          {formatPrice(locale, game.price)}
                         </span>
                         {hasDiscount && (
                           <span className="text-lg text-muted-foreground/60 line-through">
-                            ${game.originalPrice!.toFixed(2)}
+                            {formatPrice(locale, game.originalPrice!)}
                           </span>
                         )}
                       </div>
@@ -199,11 +200,7 @@ export default function GamePage({
                     <Calendar className="size-4 text-muted-foreground shrink-0" />
                     <span className="text-muted-foreground">{t("game.released")}</span>
                     <span className="ms-auto font-medium text-foreground">
-                      {new Date(game.releaseDate).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
+                      {formatDate(locale, game.releaseDate)}
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">

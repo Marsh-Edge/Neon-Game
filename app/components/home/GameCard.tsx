@@ -10,13 +10,14 @@ import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/app/context/LanguageContext";
+import { formatPrice } from "@/app/lib/formatPrice";
 
 interface GameCardProps {
   game: Game;
 }
 
 export function GameCard({ game }: GameCardProps) {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const { addItem, isInCart } = useCart();
   const { toggleItem, isWishlisted } = useWishlist();
   const hasDiscount = game.originalPrice && game.originalPrice > game.price;
@@ -128,11 +129,11 @@ export function GameCard({ game }: GameCardProps) {
             ) : (
               <>
                 <span className="text-base font-bold text-neon-cyan">
-                  ${game.price.toFixed(2)}
+                  {formatPrice(locale, game.price)}
                 </span>
                 {hasDiscount && (
                   <span className="text-xs text-muted-foreground/60 line-through">
-                    ${game.originalPrice!.toFixed(2)}
+                    {formatPrice(locale, game.originalPrice!)}
                   </span>
                 )}
               </>

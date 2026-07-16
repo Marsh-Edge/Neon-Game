@@ -17,7 +17,14 @@ interface FooterTranslationsProps {
 }
 
 export function FooterTranslations({ socialLinks, paymentMethods }: FooterTranslationsProps) {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
+
+  const columnLabels: Record<string, string> = {
+    store: t("footer.column.store"),
+    support: t("footer.column.support"),
+    company: t("footer.column.company"),
+    legal: t("footer.column.legal"),
+  };
 
   const footerLinks = {
     store: [
@@ -54,7 +61,7 @@ export function FooterTranslations({ socialLinks, paymentMethods }: FooterTransl
               <Gamepad2 className="size-4 text-neon-cyan" />
             </div>
             <span className="font-[family-name:var(--font-display)] text-lg font-bold text-foreground">
-              NEON<span className="text-neon-cyan">GAME</span>
+              {locale === "fa" ? t("site.name") : <>NEON<span className="text-neon-cyan">GAME</span></>}
             </span>
           </Link>
           <p className="text-sm text-muted-foreground/70 max-w-[220px] mb-4 leading-relaxed">
@@ -80,7 +87,7 @@ export function FooterTranslations({ socialLinks, paymentMethods }: FooterTransl
         {Object.entries(footerLinks).map(([category, links]) => (
           <div key={category}>
             <h4 className="font-[family-name:var(--font-display)] text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">
-              {category}
+              {columnLabels[category] ?? category}
             </h4>
             <ul className="space-y-2">
               {links.map((link) => (
