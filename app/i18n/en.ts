@@ -11,6 +11,12 @@ const en = {
   "nav.search": "Search games...",
   "nav.account": "Account",
   "account.unavailable": "Account features are coming soon",
+  "nav.language": "Switch language",
+  "nav.menu": "Toggle menu",
+
+  // Search
+  "search.resultCount": "{n} {n, select, one {result} other {results}}",
+  "search.noResults": "No games found for \"{query}\".",
 
   // Home
   "home.browseByCategory": "Browse by Category",
@@ -131,6 +137,8 @@ const en = {
   "categories.sports": "Sports",
   "categories.adventure": "Adventure",
   "categories.indie": "Indie",
+  "categories.horror": "Horror",
+  "categories.simulation": "Simulation",
 
   // Errors
   "notFound.title": "Page not found",

@@ -17,6 +17,12 @@ import { useLanguage } from "@/app/context/LanguageContext";
 export function HeroCarousel() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
   const { locale, t } = useLanguage();
 
   const scrollPrev = useCallback(() => {
@@ -46,19 +52,34 @@ export function HeroCarousel() {
     };
   }, [api]);
 
-  // Auto-rotate every 5 seconds
+  // Respect the user's reduced-motion preference
   useEffect(() => {
-    if (!api) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(mq.matches);
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  // Auto-rotate every 5 seconds, pausing on hover/focus and hidden tabs
+  useEffect(() => {
+    if (!api || paused || reducedMotion) return;
     const interval = setInterval(() => {
+      if (document.hidden) return;
       api.scrollNext();
     }, 5000);
     return () => clearInterval(interval);
-  }, [api]);
+  }, [api, paused, reducedMotion]);
 
   const isRtl = locale === "fa";
 
   return (
-    <section className="relative w-full">
+    <section
+      className="relative w-full"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
         <Carousel
           setApi={setApi}
           opts={{ loop: true, align: "start" }}

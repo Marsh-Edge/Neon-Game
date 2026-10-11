@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 
 export function usePersistedState<T>(
   key: string,
   initialValue: T
 ): [T, Dispatch<SetStateAction<T>>] {
   const [state, setState] = useState<T>(initialValue);
+  const isFirstWrite = useRef(true);
 
   useEffect(() => {
     try {
@@ -18,6 +19,12 @@ export function usePersistedState<T>(
   }, [key]);
 
   useEffect(() => {
+    // Skip the mount-time write so a stored value is never clobbered
+    // before it has been hydrated from localStorage.
+    if (isFirstWrite.current) {
+      isFirstWrite.current = false;
+      return;
+    }
     try {
       localStorage.setItem(key, JSON.stringify(state));
     } catch {}

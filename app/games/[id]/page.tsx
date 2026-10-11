@@ -2,6 +2,7 @@
 
 import { use } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Star, ShoppingCart, Heart, Monitor, Calendar, Building2 } from "lucide-react";
 import { PageShell } from "@/app/components/layout/PageShell";
@@ -91,13 +92,14 @@ export default function GamePage({
             <FadeIn className="lg:col-span-2">
               <div className="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br dark:from-white/[0.07] dark:to-white/[0.02] from-black/[0.05] to-black/[0.02] glass glass-border">
                 <div className="absolute inset-0 animate-shimmer" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-24 h-24 rounded-2xl dark:bg-white/[0.07] dark:border-white/[0.08] bg-black/[0.05] border-black/[0.08] border flex items-center justify-center">
-                    <span className="font-[family-name:var(--font-display)] text-4xl text-muted-foreground/40">
-                      {game.title.charAt(0)}
-                    </span>
-                  </div>
-                </div>
+                <Image
+                  src={game.image}
+                  alt={game.title}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  className="object-cover"
+                />
 
                 {/* Badges */}
                 <div className="absolute top-4 start-4 flex gap-2">
@@ -264,12 +266,18 @@ export default function GamePage({
                 {t("game.screenshots")}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {game.screenshots.map((_, index) => (
+                {game.screenshots.map((shot, index) => (
                   <div
                     key={index}
-                    className="aspect-video rounded-xl overflow-hidden bg-gradient-to-br dark:from-white/[0.05] dark:to-white/[0.02] from-black/[0.03] to-black/[0.01] glass glass-border"
+                    className="relative aspect-video rounded-xl overflow-hidden bg-gradient-to-br dark:from-white/[0.05] dark:to-white/[0.02] from-black/[0.03] to-black/[0.01] glass glass-border"
                   >
-                    <div className="w-full h-full animate-shimmer" />
+                    <Image
+                      src={shot}
+                      alt={`${game.title} — ${t("game.screenshots")} ${index + 1}`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                      className="object-cover"
+                    />
                   </div>
                 ))}
               </div>

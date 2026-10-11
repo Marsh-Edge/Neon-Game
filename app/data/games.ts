@@ -279,21 +279,6 @@ export const recommended: Game[] = [
 
 export const newReleases: Game[] = [
   {
-    id: "nr1",
-    title: "GTA VI",
-    price: 69.99,
-    rating: 4.9,
-    genres: ["Action", "Adventure"],
-    image: "/placeholder.svg",
-    description: "Return to the sun-soaked streets of Vice City in the most ambitious open-world game ever created.",
-    developer: "Rockstar Games",
-    releaseDate: "2025-05-26",
-    platform: ["PS5", "Xbox Series X"],
-    screenshots: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
-    isNew: true,
-    badge: "new",
-  },
-  {
     id: "nr2",
     title: "Death Stranding 2",
     price: 69.99,
@@ -522,9 +507,11 @@ const genreKeyMap: Record<string, TranslationKey> = {
   Sports: "categories.sports",
   Adventure: "categories.adventure",
   Indie: "categories.indie",
+  Horror: "categories.horror",
+  Simulation: "categories.simulation",
 };
 
 export function genreNameKey(genre: string): TranslationKey {
   const normalized = genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase();
-  return genreKeyMap[normalized] ?? genreKeyMap[genre];
+  return genreKeyMap[normalized] ?? genreKeyMap[genre] ?? (genre as TranslationKey);
 }

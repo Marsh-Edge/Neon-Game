@@ -1,6 +1,7 @@
 "use client";
 
 import { ShoppingCart, Star, Heart } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -43,13 +44,13 @@ export function GameCard({ game }: GameCardProps) {
       <Link href={`/games/${game.id}`} className="block">
         <div className="relative aspect-video rounded-t-xl bg-gradient-to-br dark:from-white/[0.07] dark:to-white/[0.02] from-black/[0.05] to-black/[0.02] overflow-hidden">
           <div className="absolute inset-0 animate-shimmer" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 rounded-lg dark:bg-white/[0.07] dark:border-white/[0.08] bg-black/[0.05] border-black/[0.08] border flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-              <span className="font-[family-name:var(--font-display)] text-lg text-muted-foreground/40">
-                {game.title.charAt(0)}
-              </span>
-            </div>
-          </div>
+          <Image
+            src={game.image}
+            alt={game.title}
+            fill
+            sizes="(max-width: 640px) 240px, 240px"
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
 
           {/* Discount Badge */}
           {hasDiscount && game.discount && (
@@ -144,6 +145,11 @@ export function GameCard({ game }: GameCardProps) {
               size="icon"
               variant="ghost"
               onClick={() => toggleItem(game)}
+              aria-label={
+                isWishlisted(game.id)
+                  ? t("game.inWishlist")
+                  : t("game.addToWishlist")
+              }
               className={cn(
                 "size-8 rounded-lg cursor-pointer transition-all duration-200",
                 isWishlisted(game.id)
@@ -161,6 +167,7 @@ export function GameCard({ game }: GameCardProps) {
               variant="ghost"
               onClick={handleAddToCart}
               disabled={isInCart(game.id)}
+              aria-label={isInCart(game.id) ? t("game.inCart") : t("game.addToCart")}
               className={cn(
                 "size-8 rounded-lg cursor-pointer transition-all duration-200",
                 isInCart(game.id)

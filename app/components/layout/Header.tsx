@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Search, ShoppingCart, User, Menu, X, Gamepad2, Heart } from "lucide-react";
+import { ShoppingCart, User, Menu, X, Gamepad2, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { SearchBox } from "@/app/components/search/SearchBox";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { useLanguage } from "@/app/context/LanguageContext";
@@ -54,14 +54,7 @@ export function Header() {
 
           {/* Search Bar */}
           <div className="hidden sm:flex flex-1 max-w-md mx-4">
-            <div className="relative w-full group">
-              <Search className="absolute start-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground group-focus-within:text-neon-cyan transition-colors duration-200" />
-              <Input
-                type="search"
-                placeholder={t("nav.search")}
-                className="ps-9 frosted-input rounded-xl text-sm text-foreground placeholder:text-muted-foreground h-9"
-              />
-            </div>
+            <SearchBox />
           </div>
 
           {/* Desktop Actions */}
@@ -71,6 +64,7 @@ export function Header() {
               variant="ghost"
               size="icon"
               onClick={() => setLocale(locale === "en" ? "fa" : "en")}
+              aria-label={t("nav.language")}
               className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl text-xs font-bold cursor-pointer"
               title={locale === "en" ? "\u0641\u0627\u0631\u0633\u06CC" : "English"}
             >
@@ -80,6 +74,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
+                aria-label={t("nav.wishlist")}
                 className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
               >
                 <Heart className="size-[18px]" />
@@ -103,6 +98,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
+                aria-label={t("cart.title")}
                 className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
               >
                 <ShoppingCart className="size-[18px]" />
@@ -122,6 +118,7 @@ export function Header() {
               variant="ghost"
               size="icon"
               onClick={() => setLocale(locale === "en" ? "fa" : "en")}
+              aria-label={t("nav.language")}
               className="size-9 text-muted-foreground hover:text-foreground text-xs font-bold cursor-pointer"
               title={locale === "en" ? "\u0641\u0627\u0631\u0633\u06CC" : "English"}
             >
@@ -130,6 +127,8 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
+              aria-label={t("nav.menu")}
+              aria-expanded={mobileMenuOpen}
               className="size-9 text-muted-foreground hover:text-foreground"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
@@ -142,12 +141,7 @@ export function Header() {
         {mobileMenuOpen && (
           <div className="md:hidden frosted border border-border rounded-xl -mx-2 mb-3 py-4 space-y-1">
             <div className="sm:hidden relative mb-3">
-              <Search className="absolute start-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder={t("nav.search")}
-                className="ps-9 frosted-input rounded-xl text-sm text-foreground placeholder:text-muted-foreground h-9"
-              />
+              <SearchBox onNavigate={() => setMobileMenuOpen(false)} />
             </div>
             {navLinks.map((link) => (
               <Link
@@ -164,6 +158,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
+                  aria-label={t("nav.wishlist")}
                   className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
                 >
                   <Heart className="size-[18px]" />
@@ -187,6 +182,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
+                  aria-label={t("cart.title")}
                   className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl relative"
                 >
                   <ShoppingCart className="size-[18px]" />

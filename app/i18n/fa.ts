@@ -11,6 +11,12 @@ const fa: Record<keyof typeof import("./en").default, string> = {
   "nav.search": "جستجوی بازی...",
   "nav.account": "حساب کاربری",
   "account.unavailable": "امکانات حساب کاربری به‌زودی اضافه می‌شود",
+  "nav.language": "تغییر زبان",
+  "nav.menu": "باز و بستن منو",
+
+  // Search
+  "search.resultCount": "{n} نتیجه پیدا شد",
+  "search.noResults": "بازی‌ای برای «{query}» پیدا نشد.",
 
   // Home
   "home.browseByCategory": "جستجو بر اساس ژانر",
@@ -131,6 +137,8 @@ const fa: Record<keyof typeof import("./en").default, string> = {
   "categories.sports": "ورزشی",
   "categories.adventure": "ماجراجویی",
   "categories.indie": "مستقل",
+  "categories.horror": "ترسناک",
+  "categories.simulation": "شبیه‌سازی",
 
   // Errors
   "notFound.title": "صفحه پیدا نشد",

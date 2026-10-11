@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ShoppingCart, Trash2, ArrowRight, ShieldCheck } from "lucide-react";
 import { PageShell } from "../components/layout/PageShell";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -9,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import { useLanguage } from "@/app/context/LanguageContext";
+import { genreNameKey } from "@/app/data/games";
 import { formatPrice } from "@/app/lib/formatPrice";
 
 export default function CartPage() {
@@ -68,11 +70,15 @@ export default function CartPage() {
                       {/* Thumbnail */}
                       <Link
                         href={`/games/${game.id}`}
-                        className="shrink-0 w-24 h-16 sm:w-32 sm:h-20 rounded-lg bg-gradient-to-br dark:from-white/[0.07] dark:to-white/[0.02] from-black/[0.05] to-black/[0.02] flex items-center justify-center overflow-hidden hover:opacity-80 transition-opacity"
+                        className="relative shrink-0 w-24 h-16 sm:w-32 sm:h-20 rounded-lg bg-gradient-to-br dark:from-white/[0.07] dark:to-white/[0.02] from-black/[0.05] to-black/[0.02] flex items-center justify-center overflow-hidden hover:opacity-80 transition-opacity"
                       >
-                        <span className="font-[family-name:var(--font-display)] text-xl text-muted-foreground/40">
-                          {game.title.charAt(0)}
-                        </span>
+                        <Image
+                          src={game.image}
+                          alt={game.title}
+                          fill
+                          sizes="(max-width: 640px) 96px, 128px"
+                          className="object-cover"
+                        />
                       </Link>
 
                       {/* Info */}
@@ -90,7 +96,7 @@ export default function CartPage() {
                                 key={genre}
                                 className="text-[10px] text-muted-foreground dark:bg-white/[0.04] bg-black/[0.04] px-1.5 py-0.5 rounded-md"
                               >
-                                {genre}
+                                {t(genreNameKey(genre))}
                               </span>
                             ))}
                           </div>

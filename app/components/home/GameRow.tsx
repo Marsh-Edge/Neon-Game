@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { GameCard } from "./GameCard";
 import { useDragScroll } from "@/hooks/useDragScroll";
@@ -14,7 +15,7 @@ interface GameRowProps {
   seeAllHref?: string;
 }
 
-export function GameRow({ title, games, seeAllHref = "#" }: GameRowProps) {
+export function GameRow({ title, games, seeAllHref = "/games" }: GameRowProps) {
   const { t } = useLanguage();
   const { ref, isDragging } = useDragScroll();
 
@@ -25,13 +26,13 @@ export function GameRow({ title, games, seeAllHref = "#" }: GameRowProps) {
           <h2 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl font-bold text-foreground">
             {title}
           </h2>
-          <a
+          <Link
             href={seeAllHref}
             className="flex items-center gap-1 text-sm font-medium text-neon-cyan/70 hover:text-neon-cyan transition-colors duration-200"
           >
             {t("home.seeAll")}
-            <ChevronRight className="size-4" />
-          </a>
+            <ChevronRight className="size-4 rtl:rotate-180" />
+          </Link>
         </div>
       </FadeIn>
       <StaggerContainer

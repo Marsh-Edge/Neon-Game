@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none" role="img" aria-label="Game cover placeholder">
+  <defs>
+    <linearGradient id="ng-bg" x1="0" y1="0" x2="640" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B1B33"/>
+      <stop offset="1" stop-color="#0A0A18"/>
+    </linearGradient>
+    <linearGradient id="ng-stroke" x1="220" y1="120" x2="420" y2="250" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00E5FF"/>
+      <stop offset="0.5" stop-color="#A855F7"/>
+      <stop offset="1" stop-color="#FF2E93"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#ng-bg)"/>
+  <circle cx="150" cy="90" r="130" fill="#00E5FF" opacity="0.07"/>
+  <circle cx="510" cy="300" r="150" fill="#A855F7" opacity="0.07"/>
+  <g transform="translate(320 176)">
+    <rect x="-58" y="-30" width="116" height="76" rx="24" fill="none" stroke="url(#ng-stroke)" stroke-width="3"/>
+    <path d="M-30 -8v20M-40 2h20" stroke="url(#ng-stroke)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="30" cy="-8" r="4.5" fill="#00E5FF"/>
+    <circle cx="42" cy="6" r="4.5" fill="#FF2E93"/>
+    <circle cx="18" cy="6" r="4.5" fill="#A855F7"/>
+  </g>
+  <text x="320" y="262" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" letter-spacing="8" fill="#E2E8F0" opacity="0.35">NEONGAME</text>
+</svg>

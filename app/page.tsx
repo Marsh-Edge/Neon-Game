@@ -52,7 +52,7 @@ export default function Home() {
           <GameRow
             title={t("home.freeGames")}
             games={freeGames}
-            seeAllHref="#free"
+            seeAllHref="/games"
           />
 
           {/* Newsletter */}
