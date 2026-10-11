@@ -1,3 +1,5 @@
+import type { TranslationKey } from "@/app/i18n/en";
+
 export interface Game {
   id: string;
   title: string;
@@ -21,6 +23,7 @@ export const heroSlides = [
   {
     id: 1,
     title: "Cyber Legends 2077",
+    titleKey: "hero.slide1.title" as const,
     subtitleKey: "hero.slide1.subtitle" as const,
     gradient: "from-purple-900 via-indigo-900 to-cyan-900",
     accentColor: "neon-cyan",
@@ -31,6 +34,7 @@ export const heroSlides = [
   {
     id: 2,
     title: "Phantom Strike",
+    titleKey: "hero.slide2.title" as const,
     subtitleKey: "hero.slide2.subtitle" as const,
     gradient: "from-rose-900 via-pink-900 to-purple-900",
     accentColor: "neon-magenta",
@@ -41,6 +45,7 @@ export const heroSlides = [
   {
     id: 3,
     title: "Stellar Horizons",
+    titleKey: "hero.slide3.title" as const,
     subtitleKey: "hero.slide3.subtitle" as const,
     gradient: "from-cyan-900 via-teal-900 to-emerald-900",
     accentColor: "neon-cyan",
@@ -51,6 +56,7 @@ export const heroSlides = [
   {
     id: 4,
     title: "Neon Drift Racing",
+    titleKey: "hero.slide4.title" as const,
     subtitleKey: "hero.slide4.subtitle" as const,
     gradient: "from-violet-900 via-purple-900 to-fuchsia-900",
     accentColor: "neon-purple",
@@ -61,14 +67,14 @@ export const heroSlides = [
 ];
 
 export const categories = [
-  { id: "action", name: "Action", icon: "Swords" },
-  { id: "rpg", name: "RPG", icon: "Shield" },
-  { id: "shooter", name: "Shooter", icon: "Crosshair" },
-  { id: "racing", name: "Racing", icon: "Car" },
-  { id: "strategy", name: "Strategy", icon: "Brain" },
-  { id: "sports", name: "Sports", icon: "Trophy" },
-  { id: "adventure", name: "Adventure", icon: "Compass" },
-  { id: "indie", name: "Indie", icon: "Sparkles" },
+  { id: "action", name: "Action", nameKey: "categories.action" as const, icon: "Swords" },
+  { id: "rpg", name: "RPG", nameKey: "categories.rpg" as const, icon: "Shield" },
+  { id: "shooter", name: "Shooter", nameKey: "categories.shooter" as const, icon: "Crosshair" },
+  { id: "racing", name: "Racing", nameKey: "categories.racing" as const, icon: "Car" },
+  { id: "strategy", name: "Strategy", nameKey: "categories.strategy" as const, icon: "Brain" },
+  { id: "sports", name: "Sports", nameKey: "categories.sports" as const, icon: "Trophy" },
+  { id: "adventure", name: "Adventure", nameKey: "categories.adventure" as const, icon: "Compass" },
+  { id: "indie", name: "Indie", nameKey: "categories.indie" as const, icon: "Sparkles" },
 ];
 
 export const bestSellers: Game[] = [
@@ -499,10 +505,26 @@ export const allGames: Game[] = [
 export const socialProof = {
   activeViewers: 2847,
   recentPurchases: [
-    { user: "Gamer_***7", game: "Elden Ring", time: "2 min ago" },
-    { user: "Night_***3", game: "GTA VI", time: "5 min ago" },
-    { user: "Pro_***9", game: "Baldur's Gate 3", time: "8 min ago" },
-    { user: "Neo_***2", game: "Cyberpunk 2077", time: "12 min ago" },
-    { user: "Star_***1", game: "Hades II", time: "15 min ago" },
+    { user: "Gamer_***7", game: "Elden Ring", minutes: 2 },
+    { user: "Night_***3", game: "GTA VI", minutes: 5 },
+    { user: "Pro_***9", game: "Baldur's Gate 3", minutes: 8 },
+    { user: "Neo_***2", game: "Cyberpunk 2077", minutes: 12 },
+    { user: "Star_***1", game: "Hades II", minutes: 15 },
   ],
 };
+
+const genreKeyMap: Record<string, TranslationKey> = {
+  Action: "categories.action",
+  RPG: "categories.rpg",
+  Shooter: "categories.shooter",
+  Racing: "categories.racing",
+  Strategy: "categories.strategy",
+  Sports: "categories.sports",
+  Adventure: "categories.adventure",
+  Indie: "categories.indie",
+};
+
+export function genreNameKey(genre: string): TranslationKey {
+  const normalized = genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase();
+  return genreKeyMap[normalized] ?? genreKeyMap[genre];
+}

@@ -13,8 +13,7 @@ import {
   Compass,
   Sparkles,
 } from "lucide-react";
-import { Header } from "@/app/components/layout/Header";
-import { Footer } from "@/app/components/layout/Footer";
+import { PageShell } from "@/app/components/layout/PageShell";
 import { GameGrid } from "@/app/components/home/GameGrid";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { allGames, categories } from "@/app/data/games";
@@ -55,11 +54,8 @@ export default function CategoryPage({
   const Icon = iconMap[category.icon] || Sparkles;
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-
-      <main className="flex-1">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <PageShell>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
           {/* Breadcrumb */}
           <FadeIn>
             <nav className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -67,7 +63,7 @@ export default function CategoryPage({
                 {t("games.title")}
               </Link>
               <span>/</span>
-              <span className="text-foreground font-medium">{category.name}</span>
+              <span className="text-foreground font-medium">{t(category.nameKey)}</span>
             </nav>
           </FadeIn>
 
@@ -79,7 +75,7 @@ export default function CategoryPage({
               </div>
               <div>
                 <h1 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-bold text-foreground">
-                  {category.name}
+                  {t(category.nameKey)}
                 </h1>
                 <p className="text-muted-foreground">
                   {filteredGames.length} {filteredGames.length === 1 ? t("games.game") : t("games.games")} {t("categories.available")}
@@ -92,10 +88,7 @@ export default function CategoryPage({
           <FadeIn delay={0.2}>
             <GameGrid games={filteredGames} />
           </FadeIn>
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+      </div>
+    </PageShell>
   );
 }

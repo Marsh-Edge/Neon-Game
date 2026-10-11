@@ -1,15 +1,9 @@
 import {
-  Globe,
-  MessageCircle,
-  Share2,
   ExternalLink,
 } from "lucide-react";
 import { FooterTranslations } from "./FooterTranslations";
 
 const socialLinks = [
-  { icon: Globe, href: "#", label: "Twitter" },
-  { icon: Share2, href: "#", label: "YouTube" },
-  { icon: MessageCircle, href: "#", label: "Discord" },
   { icon: ExternalLink, href: "https://github.com/Marsh-Edge", label: "GitHub" },
 ];
 

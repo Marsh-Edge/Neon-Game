@@ -94,7 +94,7 @@ export function HeroCarousel() {
                         {t(slide.discountKey)}
                       </span>
                       <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight">
-                        {slide.title}
+                        {t(slide.titleKey)}
                       </h2>
                       <p className="text-base sm:text-lg text-white/60 mb-6 font-light">
                         {t(slide.subtitleKey)}
@@ -127,6 +127,7 @@ export function HeroCarousel() {
           variant="outline"
           size="icon"
           onClick={scrollPrev}
+          aria-label={t("hero.previousSlide")}
           className="absolute start-3 sm:start-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-border text-foreground/70 hover:text-foreground hover:border-border hover:bg-muted cursor-pointer transition-all duration-200"
         >
           {isRtl ? <ChevronRight className="size-5" /> : <ChevronLeft className="size-5" />}
@@ -135,6 +136,7 @@ export function HeroCarousel() {
           variant="outline"
           size="icon"
           onClick={scrollNext}
+          aria-label={t("hero.nextSlide")}
           className="absolute end-3 sm:end-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full frosted border-border text-foreground/70 hover:text-foreground hover:border-border hover:bg-muted cursor-pointer transition-all duration-200"
         >
           {isRtl ? <ChevronLeft className="size-5" /> : <ChevronRight className="size-5" />}
@@ -146,6 +148,8 @@ export function HeroCarousel() {
             <button
               key={index}
               onClick={() => scrollTo(index)}
+              aria-label={t("hero.goToSlide", { n: index + 1 })}
+              aria-current={current === index ? "true" : undefined}
               className={cn(
                 "h-2 rounded-full transition-all duration-300 cursor-pointer",
                 current === index

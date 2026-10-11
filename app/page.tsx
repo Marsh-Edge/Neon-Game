@@ -1,7 +1,6 @@
 "use client";
 
-import { Header } from "./components/layout/Header";
-import { Footer } from "./components/layout/Footer";
+import { PageShell } from "./components/layout/PageShell";
 import { HeroCarousel } from "./components/home/HeroCarousel";
 import { CategoryBar } from "./components/home/CategoryBar";
 import { GameRow } from "./components/home/GameRow";
@@ -21,11 +20,8 @@ export default function Home() {
   const { t } = useLanguage();
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-
-      <main className="flex-1">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 space-y-16">
+    <PageShell>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 space-y-16">
           {/* Hero Carousel */}
           <FadeIn variant="fadeIn" duration={0.6}>
             <HeroCarousel />
@@ -61,10 +57,7 @@ export default function Home() {
 
           {/* Newsletter */}
           <Newsletter />
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+      </div>
+    </PageShell>
   );
 }

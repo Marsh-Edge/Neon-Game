@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Header } from "../components/layout/Header";
-import { Footer } from "../components/layout/Footer";
+import { PageShell } from "../components/layout/PageShell";
 import { GameGrid } from "../components/home/GameGrid";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { allGames, categories } from "../data/games";
@@ -25,11 +24,8 @@ export default function GamesPage() {
   }, [activeCategory]);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-
-      <main className="flex-1">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <PageShell>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
           {/* Page Header */}
           <FadeIn>
             <div>
@@ -67,7 +63,7 @@ export default function GamesPage() {
                       : "glass glass-border text-muted-foreground hover:text-foreground hover:border-neon-purple/30"
                   )}
                 >
-                  {cat.name}
+                  {t(cat.nameKey)}
                 </button>
               ))}
             </div>
@@ -88,10 +84,7 @@ export default function GamesPage() {
           <FadeIn delay={0.2}>
             <GameGrid title="" games={filteredGames} />
           </FadeIn>
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+      </div>
+    </PageShell>
   );
 }

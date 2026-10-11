@@ -53,7 +53,7 @@ export function CategoryBar() {
               >
                 <Icon className="size-6 text-neon-purple group-hover:text-neon-cyan transition-all duration-250 group-hover:scale-110" />
                 <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground/80 transition-colors duration-250">
-                  {cat.name}
+                  {t(cat.nameKey)}
                 </span>
               </Link>
             </StaggerItem>

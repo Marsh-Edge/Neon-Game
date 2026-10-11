@@ -19,6 +19,14 @@ const eslintConfig = defineConfig([
       "react-hooks/set-state-in-effect": "off",
     },
   },
+  // Context providers intentionally hydrate persisted state (localStorage)
+  // via effect + setState to avoid SSR hydration mismatches.
+  {
+    files: ["app/context/**"],
+    rules: {
+      "react-hooks/set-state-in-effect": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

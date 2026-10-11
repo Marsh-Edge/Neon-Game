@@ -11,8 +11,7 @@ import {
   Compass,
   Sparkles,
 } from "lucide-react";
-import { Header } from "../components/layout/Header";
-import { Footer } from "../components/layout/Footer";
+import { PageShell } from "../components/layout/PageShell";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/FadeIn";
 import { categories, allGames } from "../data/games";
 import { cn } from "@/lib/utils";
@@ -34,11 +33,8 @@ export default function CategoriesPage() {
   const { t } = useLanguage();
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-
-      <main className="flex-1">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <PageShell>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
           {/* Page Header */}
           <FadeIn>
             <div>
@@ -75,7 +71,7 @@ export default function CategoriesPage() {
                     </div>
                     <div>
                       <h2 className="font-[family-name:var(--font-display)] text-lg font-bold text-foreground mb-1">
-                        {cat.name}
+                        {t(cat.nameKey)}
                       </h2>
                       <p className="text-sm text-muted-foreground">
                         {gameCount} {gameCount === 1 ? t("games.game") : t("games.games")}
@@ -86,10 +82,7 @@ export default function CategoriesPage() {
               );
             })}
           </StaggerContainer>
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+      </div>
+    </PageShell>
   );
 }

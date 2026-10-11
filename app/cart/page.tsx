@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { ShoppingCart, Trash2, ArrowRight, ShieldCheck } from "lucide-react";
-import { Header } from "../components/layout/Header";
-import { Footer } from "../components/layout/Footer";
+import { PageShell } from "../components/layout/PageShell";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { useCart } from "@/app/context/CartContext";
 import { Button } from "@/components/ui/button";
@@ -22,11 +21,8 @@ export default function CartPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-
-      <main className="flex-1">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <PageShell>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
           {/* Page Header */}
           <FadeIn>
             <div className="flex items-start gap-4">
@@ -157,7 +153,10 @@ export default function CartPage() {
                     </div>
                   </div>
 
-                  <Button className="w-full bg-neon-cyan text-black hover:bg-neon-cyan/80 font-bold h-11 text-sm cursor-pointer rounded-xl gap-2">
+                  <Button
+                    onClick={() => toast.info(t("cart.checkoutDemo"))}
+                    className="w-full bg-neon-cyan text-black hover:bg-neon-cyan/80 font-bold h-11 text-sm cursor-pointer rounded-xl gap-2"
+                  >
                     {t("cart.checkout")}
                     <ArrowRight className="size-4" />
                   </Button>
@@ -198,10 +197,7 @@ export default function CartPage() {
               </div>
             </FadeIn>
           )}
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+      </div>
+    </PageShell>
   );
 }

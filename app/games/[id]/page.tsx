@@ -4,13 +4,12 @@ import { use } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Star, ShoppingCart, Heart, Monitor, Calendar, Building2 } from "lucide-react";
-import { Header } from "@/app/components/layout/Header";
-import { Footer } from "@/app/components/layout/Footer";
+import { PageShell } from "@/app/components/layout/PageShell";
 import { GameRow } from "@/app/components/home/GameRow";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { allGames } from "@/app/data/games";
+import { allGames, genreNameKey } from "@/app/data/games";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { toast } from "sonner";
@@ -70,11 +69,8 @@ export default function GamePage({
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-
-      <main className="flex-1">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+    <PageShell>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
           {/* Breadcrumb */}
           <FadeIn>
             <nav className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -242,7 +238,7 @@ export default function GamePage({
                     href={`/categories/${genre.toLowerCase()}`}
                     className="px-3 py-1 rounded-lg glass glass-border text-sm font-medium text-muted-foreground hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-200"
                   >
-                    {genre}
+                    {t(genreNameKey(genre))}
                   </Link>
                 ))}
               </div>
@@ -286,10 +282,7 @@ export default function GamePage({
               <GameRow title={t("game.related")} games={relatedGames} />
             </FadeIn>
           )}
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+      </div>
+    </PageShell>
   );
 }

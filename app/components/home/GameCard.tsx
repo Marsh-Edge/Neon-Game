@@ -5,7 +5,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import type { Game } from "@/app/data/games";
+import { genreNameKey, type Game } from "@/app/data/games";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { cn } from "@/lib/utils";
@@ -106,7 +106,7 @@ export function GameCard({ game }: GameCardProps) {
               key={genre}
               className="text-[10px] text-muted-foreground dark:bg-white/[0.04] bg-black/[0.04] px-1.5 py-0.5 rounded-md"
             >
-              {genre}
+              {t(genreNameKey(genre))}
             </span>
           ))}
         </div>

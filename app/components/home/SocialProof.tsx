@@ -42,7 +42,7 @@ export function SocialProof() {
                         <span className="font-medium text-neon-cyan/80">
                           {purchase.game}
                         </span>{" "}
-                        {purchase.time}
+                        {t("social.time.minutes", { n: purchase.minutes })}
                       </span>
                     </div>
                   )

@@ -9,6 +9,7 @@ import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { useLanguage } from "@/app/context/LanguageContext";
 import { ThemeToggle } from "./ThemeToggle";
+import { toast } from "sonner";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -92,6 +93,8 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
+              onClick={() => toast.info(t("account.unavailable"))}
+              aria-label={t("nav.account")}
               className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl"
             >
               <User className="size-[18px]" />
@@ -174,6 +177,8 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
+                onClick={() => toast.info(t("account.unavailable"))}
+                aria-label={t("nav.account")}
                 className="size-9 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl"
               >
                 <User className="size-[18px]" />

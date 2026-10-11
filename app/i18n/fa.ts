@@ -9,6 +9,8 @@ const fa: Record<keyof typeof import("./en").default, string> = {
   "nav.deals": "تخفیف‌ها و پیشنهادات ویژه",
   "nav.wishlist": "علاقه‌مندی‌ها",
   "nav.search": "جستجوی بازی...",
+  "nav.account": "حساب کاربری",
+  "account.unavailable": "امکانات حساب کاربری به‌زودی اضافه می‌شود",
 
   // Home
   "home.browseByCategory": "جستجو بر اساس ژانر",
@@ -24,12 +26,19 @@ const fa: Record<keyof typeof import("./en").default, string> = {
   "hero.preorderNow": "پیش‌خرید کنید",
   "hero.playFree": "بازی رایگان",
   "hero.getItNow": "همین حالا بخرید",
+  "hero.previousSlide": "اسلاید قبلی",
+  "hero.nextSlide": "اسلاید بعدی",
+  "hero.goToSlide": "رفتن به اسلاید {n}",
+  "hero.slide1.title": "سایبر لجندز ۲۰۷۷",
   "hero.slide1.subtitle": "تجربه نهایی بازی نقش‌آفرینی جهان باز",
   "hero.slide1.discount": "۴۰٪ تخفیف",
+  "hero.slide2.title": "فانتوم استرایک",
   "hero.slide2.subtitle": "تیراندازی تاکتیکی چندنفره",
   "hero.slide2.discount": "دسترسی زودهنگام",
+  "hero.slide3.title": "افق‌های ستاره‌ای",
   "hero.slide3.subtitle": "کاوش در جهانی بیکران",
   "hero.slide3.discount": "رایگان بازی کنید",
+  "hero.slide4.title": "نئون دریفت ریسینگ",
   "hero.slide4.subtitle": "مسابقه پرشتاب سایبرپانک",
   "hero.slide4.discount": "۲۵٪ تخفیف",
 
@@ -45,6 +54,7 @@ const fa: Record<keyof typeof import("./en").default, string> = {
   // Social Proof
   "social.viewing": "نفر هم‌اکنون در حال مشاهده‌اند",
   "social.purchased": "خریداری کردند",
+  "social.time.minutes": "{n} دقیقه پیش",
 
   // Newsletter
   "newsletter.stay": "در جریان باشید",
@@ -89,6 +99,7 @@ const fa: Record<keyof typeof import("./en").default, string> = {
   "cart.discount": "تخفیف",
   "cart.total": "مبلغ قابل پرداخت",
   "cart.checkout": "تکمیل خرید",
+  "cart.checkoutDemo": "امکان تکمیل خرید در این نسخه دمو فعلاً وجود ندارد.",
   "cart.secure": "پرداخت امن و مطمئن",
   "cart.continue": "ادامه خرید",
   "cart.empty": "سبد خرید شما خالی است",
@@ -112,6 +123,22 @@ const fa: Record<keyof typeof import("./en").default, string> = {
   "categories.title": "دسته‌بندی‌ها",
   "categories.browse": "مرور {catCount} دسته‌بندی در {gameCount} بازی",
   "categories.available": "موجود",
+  "categories.action": "اکشن",
+  "categories.rpg": "نقش‌آفرینی",
+  "categories.shooter": "تیراندازی",
+  "categories.racing": "مسابقه‌ای",
+  "categories.strategy": "استراتژی",
+  "categories.sports": "ورزشی",
+  "categories.adventure": "ماجراجویی",
+  "categories.indie": "مستقل",
+
+  // Errors
+  "notFound.title": "صفحه پیدا نشد",
+  "notFound.desc": "صفحه‌ای که دنبال آن هستید وجود ندارد یا منتقل شده است.",
+  "notFound.cta": "بازگشت به خانه",
+  "error.title": "مشکلی پیش آمد",
+  "error.desc": "خطای غیرمنتظره‌ای رخ داد. لطفاً دوباره تلاش کنید.",
+  "error.retry": "تلاش دوباره",
 
   // Footer
   "footer.store.allGames": "همه بازی‌ها",
@@ -134,7 +161,7 @@ const fa: Record<keyof typeof import("./en").default, string> = {
   "footer.column.legal": "قوانین",
   "footer.tagline": "مقصد معتبر شما برای تهیه جدیدترین بازی‌ها با بهترین قیمت‌ها.",
   "footer.createdBy": "ساخته شده توسط",
-  "footer.rights": "کلیه حقوق محفوظ است. ازی ۲۰۲۶.",
+  "footer.rights": "۲۰۲۶ نئون‌گیم. کلیه حقوق محفوظ است.",
   "footer.payment": "روش‌های پرداخت",
 
   // Badges

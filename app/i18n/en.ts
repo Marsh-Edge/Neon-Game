@@ -9,6 +9,8 @@ const en = {
   "nav.deals": "Deals",
   "nav.wishlist": "Wishlist",
   "nav.search": "Search games...",
+  "nav.account": "Account",
+  "account.unavailable": "Account features are coming soon",
 
   // Home
   "home.browseByCategory": "Browse by Category",
@@ -24,12 +26,19 @@ const en = {
   "hero.preorderNow": "Pre-order Now",
   "hero.playFree": "Play Free",
   "hero.getItNow": "Get It Now",
+  "hero.previousSlide": "Previous slide",
+  "hero.nextSlide": "Next slide",
+  "hero.goToSlide": "Go to slide {n}",
+  "hero.slide1.title": "Cyber Legends 2077",
   "hero.slide1.subtitle": "The ultimate open-world RPG experience",
   "hero.slide1.discount": "40% OFF",
+  "hero.slide2.title": "Phantom Strike",
   "hero.slide2.subtitle": "Tactical multiplayer shooter",
   "hero.slide2.discount": "EARLY ACCESS",
+  "hero.slide3.title": "Stellar Horizons",
   "hero.slide3.subtitle": "Explore the vast universe",
   "hero.slide3.discount": "FREE TO PLAY",
+  "hero.slide4.title": "Neon Drift Racing",
   "hero.slide4.subtitle": "High-speed cyberpunk racing",
   "hero.slide4.discount": "25% OFF",
 
@@ -45,6 +54,7 @@ const en = {
   // Social Proof
   "social.viewing": "people are viewing this right now",
   "social.purchased": "purchased",
+  "social.time.minutes": "{n} min ago",
 
   // Newsletter
   "newsletter.stay": "Stay in the Loop",
@@ -89,6 +99,7 @@ const en = {
   "cart.discount": "Discount",
   "cart.total": "Total",
   "cart.checkout": "Proceed to Checkout",
+  "cart.checkoutDemo": "Checkout is a demo in this project.",
   "cart.secure": "Secure checkout powered by Stripe",
   "cart.continue": "Continue Shopping",
   "cart.empty": "Your cart is empty",
@@ -112,6 +123,22 @@ const en = {
   "categories.title": "Categories",
   "categories.browse": "Browse {catCount} categories across {gameCount} games",
   "categories.available": "available",
+  "categories.action": "Action",
+  "categories.rpg": "RPG",
+  "categories.shooter": "Shooter",
+  "categories.racing": "Racing",
+  "categories.strategy": "Strategy",
+  "categories.sports": "Sports",
+  "categories.adventure": "Adventure",
+  "categories.indie": "Indie",
+
+  // Errors
+  "notFound.title": "Page not found",
+  "notFound.desc": "The page you're looking for doesn't exist or has been moved.",
+  "notFound.cta": "Back to Home",
+  "error.title": "Something went wrong",
+  "error.desc": "An unexpected error occurred. Please try again.",
+  "error.retry": "Try again",
 
   // Footer
   "footer.store.allGames": "All Games",
